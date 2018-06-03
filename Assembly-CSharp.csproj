@@ -178,13 +178,13 @@
     <Compile Include="Assets\Scripts\Models\RegularGame.cs" />
     <Compile Include="Assets\Scripts\Models\RoomListData.cs" />
     <Compile Include="Assets\Scripts\Models\SuperGame.cs" />
-    <Compile Include="Assets\Scripts\RomsDropdownManager.cs" />
     <Compile Include="Assets\Scripts\Signals\LoadRoomListSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\RoomsFetchedSignal.cs" />
-    <Compile Include="Assets\Scripts\SuperRoomManager.cs" />
     <Compile Include="Assets\Scripts\View\JoinRoomManager.cs" />
     <Compile Include="Assets\Scripts\View\RegularRoomView.cs" />
     <Compile Include="Assets\Scripts\View\RoomGridView.cs" />
+    <Compile Include="Assets\Scripts\View\RoomsDropdownView.cs" />
+    <Compile Include="Assets\Scripts\View\SuperRoomView.cs" />
     <Compile Include="Assets\Scripts\View\TargetMediator.cs" />
     <None Include="Assets\Library\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
     <None Include="Assets\Library\StrangeIoC\LICENSE-2.0.txt" />

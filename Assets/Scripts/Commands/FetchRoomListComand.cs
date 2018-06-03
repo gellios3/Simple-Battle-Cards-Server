@@ -4,7 +4,6 @@ using Models;
 using strange.extensions.command.impl;
 using Signals;
 using UniRx;
-using UnityEngine;
 
 namespace Commands
 {
@@ -16,10 +15,13 @@ namespace Commands
         [Inject]
         public RoomListData RoomListData { get; set; }
 
+        /// <summary>
+        /// Rooms fetched signal
+        /// </summary>
         [Inject] public RoomsFetchedSignal RoomsFetchedSignal { get; set; }
 
         /// <summary>
-        /// Execute load rooms list event
+        /// Execute event load rooms list 
         /// </summary>
         public override void Execute()
         {
@@ -43,11 +45,7 @@ namespace Commands
                 {
                     RoomListData.SurerGames.Add(new SuperGame(game));
                 }
-            }).ObserveOnMainThread().Subscribe(r =>
-            {
-                Debug.Log("RoomsFetchedSignal.Dispatch");
-                RoomsFetchedSignal.Dispatch();
-            });
+            }).ObserveOnMainThread().Subscribe(r => { RoomsFetchedSignal.Dispatch(); });
         }
     }
 }

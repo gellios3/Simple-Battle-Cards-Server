@@ -344,6 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc545b50a211584fb58345eb762cdc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _statusScrollbar: {fileID: 114099903563647066}
+  _currentPlayersTxt: {fileID: 114638395676289918}
+  _maxPlayersTxt: {fileID: 114159178426514898}
+  _roomPrice: {fileID: 114973609554009828}
 --- !u!114 &114605213496306788
 MonoBehaviour:
   m_ObjectHideFlags: 1

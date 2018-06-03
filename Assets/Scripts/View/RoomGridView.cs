@@ -20,7 +20,7 @@ namespace View
                     Resources.Load("Prefabs/SuperRoom", typeof(GameObject)), new Vector2(), Quaternion.identity,
                     transform
                 );
-                superRoom.GetComponent<SuperRoomManager>().Game = game;
+                superRoom.GetComponent<SuperRoomView>().Game = game;
             }
 
             // init regular rooms
@@ -35,6 +35,9 @@ namespace View
         }
     }
 
+    /// <summary>
+    /// Room grid view mediator
+    /// </summary>
     public class RoomGridViewMediator : TargetMediator<RoomGridView>
     {
         [Inject] public RoomsFetchedSignal RoomsFetchedSignal { get; set; }
@@ -46,7 +49,7 @@ namespace View
             RoomsFetchedSignal.AddListener(OnRoomsFetched);
         }
 
-        public void OnRoomsFetched()
+        private void OnRoomsFetched()
         {
             View.OnRoomsFetched(RoomListData);
         }

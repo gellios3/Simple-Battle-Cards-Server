@@ -65,6 +65,7 @@ namespace Contexts
 
             commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListComand>();
 
+            mediationBinder.Bind<RoomsDropdownView>().To<RoomsDropdownMediator>();
             mediationBinder.Bind<RoomGridView>().To<RoomGridViewMediator>();
         }
     }
