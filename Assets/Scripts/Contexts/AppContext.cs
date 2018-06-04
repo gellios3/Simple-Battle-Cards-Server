@@ -29,7 +29,10 @@ namespace Contexts
             return _instance.injectionBinder.GetInstance<T>();
         }
 
-        // Unbind the default EventCommandBinder and rebind the SignalCommandBinder
+        /// <inheritdoc />
+        /// <summary>
+        /// Unbind the default EventCommandBinder and rebind the SignalCommandBinder
+        /// </summary>
         protected override void addCoreComponents()
         {
             base.addCoreComponents();
@@ -37,7 +40,6 @@ namespace Contexts
             injectionBinder.Bind<ICommandBinder>().To<SignalCommandBinder>().ToSingleton();
         }
 
-        // 
         /// <summary>
         /// Override Start so that we can fire the StartSignal 
         /// </summary>
@@ -63,7 +65,7 @@ namespace Contexts
 
             injectionBinder.Bind<RoomListData>().ToSingleton();
 
-            commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListComand>();
+            commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListCommand>();
 
             mediationBinder.Bind<RoomsDropdownView>().To<RoomsDropdownMediator>();
             mediationBinder.Bind<RoomGridView>().To<RoomGridViewMediator>();
