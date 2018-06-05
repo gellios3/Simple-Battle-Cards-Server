@@ -10,36 +10,23 @@ namespace Models
     public class Player
     {
         /// <summary>
-        /// Battle card player hand
+        /// Battle player hand
         /// </summary>
-        private List<BattleCard> _cardHand = new List<BattleCard>();
+        private ArrayList _battleHand = new ArrayList();
 
-        public List<BattleCard> CardHand
+        public ArrayList BattleHand
         {
-            get { return _cardHand; }
-            set { _cardHand = value; }
-        }
-
-        /// <summary>
-        /// Battle trate player hand
-        /// </summary>
-        private List<BattleTrate> _trateHand = new List<BattleTrate>();
-
-        public List<BattleTrate> TrateHand
-        {
-            get { return _trateHand; }
-            set { _trateHand = value; }
+            get { return _battleHand; }
         }
 
         /// <summary>
         /// Active atack cards
         /// </summary>
-        private List<BattleCard> _activeCards = new List<BattleCard>();
+        private List<BattleCard> _arenaCards = new List<BattleCard>();
 
-        public List<BattleCard> ActiveCards
+        public List<BattleCard> ArenaCards
         {
-            get { return _activeCards; }
-            set { _activeCards = value; }
+            get { return _arenaCards; }
         }
 
         /// <summary>
@@ -120,7 +107,27 @@ namespace Models
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Fill Battle hand
+        /// </summary>
+        public void FillBattleHand()
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                _battleHand.Add(_battlePull[i]);
+                _battlePull.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// Increate battle card fron pull to hand
+        /// </summary>
+        public void IncreaceCardFromPullToHand()
+        {
+            _battleHand.Add(_battlePull[0]);
+            _battlePull.RemoveAt(0);
+        }
 
         /// <summary>
         /// Init random unique positions

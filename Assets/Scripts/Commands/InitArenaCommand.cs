@@ -9,7 +9,27 @@ namespace Commands
 {
     public class InitArenaCommand : Command
     {
-        [Inject] public Arena Arena { get; set; }
+        /// <summary>
+        /// Arena
+        /// </summary>
+        [Inject]
+        public Arena Arena { get; set; }
+        
+        /// <summary>
+        /// Your CPU Behavior
+        /// </summary>
+        [Inject] public PlayerCpuBehavior YourPlayerCpu { get; set; }
+        
+        /// <summary>
+        /// Enemy CPU Behavior
+        /// </summary>
+        [Inject] public PlayerCpuBehavior EnemyPlayerCpu { get; set; }
+
+        /// <summary>
+        /// Battle
+        /// </summary>
+        [Inject]
+        public BattleArena BattleArena { get; set; }
 
         [Inject] public ArenaInitializedSignal ArenaInitializedSignal { get; set; }
 
@@ -20,9 +40,18 @@ namespace Commands
         {
             // Load regular deck
             var deck = Resources.Load<Deck>("Objects/Decks/Regular");
-            Arena.FirstTurn = BattleState.YourTurn;
-            Arena.YourPlayer = new Player(deck);
-//            Arena.EnemyPlayer = new Player(deck);
+            // init arena
+            Arena.Init(deck,deck);
+            // Init batle in your turn
+            BattleArena.ActiveState = BattleState.YourTurn;
+            // init current player
+            var player = BattleArena.ActiveState == BattleState.YourTurn ? Arena.YourPlayer : Arena.EnemyPlayer;
+            
+            // Init player Cpu Behavior
+            YourPlayerCpu.Init(player);
+            YourPlayerCpu.InitTurn();
+            YourPlayerCpu.MakeBattleTurn();
+
             Observable.Start(() => { Debug.Log("Logic"); }).ObserveOnMainThread()
                 .Subscribe(res => { ArenaInitializedSignal.Dispatch(); });
         }

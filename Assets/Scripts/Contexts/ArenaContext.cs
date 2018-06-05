@@ -64,13 +64,14 @@ namespace Contexts
         {
             injectionBinder.Bind<InitArenaSignal>().ToSingleton();
             injectionBinder.Bind<ArenaInitializedSignal>().ToSingleton();
-//
+
             injectionBinder.Bind<Arena>().ToSingleton();
-//
+            injectionBinder.Bind<PlayerCpuBehavior>().ToSingleton();
+            injectionBinder.Bind<BattleArena>().ToSingleton();
+
             commandBinder.Bind<InitArenaSignal>().To<InitArenaCommand>();
-//
+
             mediationBinder.Bind<GameArenaView>().To<GameArenaMediator>();
-//            mediationBinder.Bind<RoomGridView>().To<RoomGridViewMediator>();
         }
     }
 }

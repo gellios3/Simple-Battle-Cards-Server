@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Models.ScriptableObjects;
 
 namespace Models
 {
@@ -7,26 +8,22 @@ namespace Models
         /// <summary>
         /// Your player
         /// </summary>
-        public Player YourPlayer { get; set; }
+        public Player YourPlayer { get; private set; }
 
         /// <summary>
         /// Enemy player
         /// </summary>
-        public Player EnemyPlayer { get; set; }
+        public Player EnemyPlayer { get; private set; }
 
         /// <summary>
-        /// Battle 
+        ///  Init Battle Arena 
         /// </summary>
-        public Battle CuttentBattle { get; set; }
-
-        /// <summary>
-        /// Firt turm
-        /// </summary>
-        public BattleState FirstTurn { get; set; }
-
-        /// <summary>
-        /// Battle history
-        /// </summary>
-        public List<Battle> History { get; set; }
+        /// <param name="playerDeck"></param>
+        /// <param name="enemyDeck"></param>
+        public void Init(Deck playerDeck, Deck enemyDeck)
+        {
+            YourPlayer = new Player(playerDeck);
+            EnemyPlayer = new Player(enemyDeck);
+        }
     }
 }

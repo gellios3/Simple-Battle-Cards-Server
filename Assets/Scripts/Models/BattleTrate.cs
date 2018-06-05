@@ -8,12 +8,12 @@ namespace Models
         /// <summary>
         /// Defence
         /// </summary>
-        public int Defence { get; set; }
+        public int Defence { get; private set; }
 
         /// <summary>
         /// Attack
         /// </summary>
-        public int Health { get; set; }
+        public int Health { get; private set; }
 
         /// <summary>
         /// Constructor
