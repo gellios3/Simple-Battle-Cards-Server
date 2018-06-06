@@ -14,16 +14,18 @@ namespace Commands
         /// </summary>
         [Inject]
         public Arena Arena { get; set; }
-        
+
         /// <summary>
         /// Your CPU Behavior
         /// </summary>
-        [Inject] public PlayerCpuBehavior YourPlayerCpu { get; set; }
-        
+        [Inject]
+        public PlayerCpuBehavior YourPlayerCpu { get; set; }
+
         /// <summary>
         /// Enemy CPU Behavior
         /// </summary>
-        [Inject] public PlayerCpuBehavior EnemyPlayerCpu { get; set; }
+        [Inject]
+        public PlayerCpuBehavior EnemyPlayerCpu { get; set; }
 
         /// <summary>
         /// Battle
@@ -41,12 +43,14 @@ namespace Commands
             // Load regular deck
             var deck = Resources.Load<Deck>("Objects/Decks/Regular");
             // init arena
-            Arena.Init(deck,deck);
+            Arena.Init(deck, deck);
+            Arena.YourPlayer.Name = "Player";
+            Arena.EnemyPlayer.Name = "CPU 1";
             // Init batle in your turn
             BattleArena.ActiveState = BattleState.YourTurn;
             // init current player
             var player = BattleArena.ActiveState == BattleState.YourTurn ? Arena.YourPlayer : Arena.EnemyPlayer;
-            
+
             // Init player Cpu Behavior
             YourPlayerCpu.Init(player);
             YourPlayerCpu.InitTurn();

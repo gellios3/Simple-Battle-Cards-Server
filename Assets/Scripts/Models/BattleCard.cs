@@ -1,5 +1,4 @@
-﻿
-using Models.ScriptableObjects;
+﻿using Models.ScriptableObjects;
 using UnityEngine;
 
 namespace Models
@@ -29,12 +28,7 @@ namespace Models
         /// <summary>
         /// Is card dead
         /// </summary>
-        public bool IsDead { get; private set; }
-        
-        /// <summary>
-        /// Is sleep
-        /// </summary>
-        public bool IsActive { get; private set; }
+        public CardStatus Status { get; set; }
 
         /// <summary>
         /// Card take damage
@@ -58,14 +52,17 @@ namespace Models
                 }
             }
 
+            // hit health
             if (Health > 0)
             {
                 Health -= damage;
             }
 
+            // if hea
             if (Health <= 0)
             {
-                IsDead = true;
+                Debug.Log(SourceCard.name + " is dead");
+                Status = CardStatus.Dead;
             }
         }
 
@@ -85,13 +82,14 @@ namespace Models
         /// <param name="card"></param>
         public BattleCard(Card card = null)
         {
+            // init scriptable card to battle card
             if (card != null)
             {
                 SourceCard = card;
                 Defence = card.Defence;
                 Attack = card.Attack;
                 Health = card.Health;
-                
+
                 if (card.Trates.Count <= 0) return;
 
                 foreach (var trate in card.Trates)
@@ -100,16 +98,21 @@ namespace Models
                     Health += trate.Health;
                 }
             }
-            else
+            else // Create random card
             {
-                // Create random card
                 Defence = Random.Range(1, 6);
                 Attack = Random.Range(1, 6);
                 Health = Random.Range(1, 6);
             }
 
-            IsDead = false;
-            IsActive = false;
+            Status = CardStatus.Wait;
         }
+    }
+
+    public enum CardStatus
+    {
+        Wait,
+        Active,
+        Dead
     }
 }

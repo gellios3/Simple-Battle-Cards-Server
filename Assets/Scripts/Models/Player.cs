@@ -10,9 +10,14 @@ namespace Models
     public class Player
     {
         /// <summary>
+        /// Player name 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Battle player hand
         /// </summary>
-        private ArrayList _battleHand = new ArrayList();
+        private readonly ArrayList _battleHand = new ArrayList();
 
         public ArrayList BattleHand
         {
@@ -22,7 +27,7 @@ namespace Models
         /// <summary>
         /// Active atack cards
         /// </summary>
-        private List<BattleCard> _arenaCards = new List<BattleCard>();
+        private readonly List<BattleCard> _arenaCards = new List<BattleCard>();
 
         public List<BattleCard> ArenaCards
         {
@@ -50,6 +55,11 @@ namespace Models
         private readonly List<int> _tratePositions = new List<int>();
 
         /// <summary>
+        /// Player Status
+        /// </summary>
+        public PlayerStatus Status { get; set; }
+
+        /// <summary>
         /// Pull type
         /// </summary>
         private enum PullType
@@ -64,6 +74,7 @@ namespace Models
         /// <param name="deck"></param>
         public Player(Deck deck)
         {
+            Status = PlayerStatus.FistTurn;
             // generate random positions
             InitRandomPositions(_cardPositions, deck.Cards.Count);
             InitRandomPositions(_tratePositions, deck.Trates.Count);
@@ -152,5 +163,13 @@ namespace Models
                 break;
             }
         }
+    }
+
+    public enum PlayerStatus
+    {
+        Wait,
+        Dead,
+        FistTurn,
+        Active
     }
 }

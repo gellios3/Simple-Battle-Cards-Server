@@ -14,6 +14,11 @@ namespace Models
         /// Attack
         /// </summary>
         public int Health { get; private set; }
+        
+        /// <summary>
+        /// Source trate
+        /// </summary>
+        public Trate SourceTrate { get; private set; }
 
         /// <summary>
         /// Constructor
@@ -23,6 +28,7 @@ namespace Models
         {
             if (trate != null)
             {
+                SourceTrate = trate;
                 Defence = trate.Defence;
                 Health = trate.Health;
             }

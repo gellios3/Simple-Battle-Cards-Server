@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Models.ScriptableObjects;
+using UnityEngine;
 
 namespace Models
 {
@@ -29,6 +30,8 @@ namespace Models
         public void Init(Player player)
         {
             ActivePlayer = player;
+
+            Debug.Log("Init Behavior for " + player.Name);
         }
 
         /// <summary>
@@ -40,6 +43,8 @@ namespace Models
             BattleArena.InitActiveTurn(ActivePlayer);
             // init battle turn 
             BattleArena.InitActiveBattleTurn(ActivePlayer);
+            // 
+            Debug.Log("InitTurn for " + ActivePlayer.Name);
         }
 
         /// <summary>
@@ -70,13 +75,27 @@ namespace Models
                 }
             }
 
+            // Atack all emeny cards 
             var enemyCards = GetEnemyActiveCards();
-            var activeCards = ActivePlayer.ArenaCards.FindAll(card => card.IsActive);
+            var activeCards = ActivePlayer.ArenaCards.FindAll(card => card.Status == CardStatus.Active);
             if (enemyCards.Count > 0 && activeCards.Count > 0)
             {
+                foreach (var yourCard in activeCards)
+                {
+                    foreach (var enemyCard in enemyCards.FindAll(card => card.Status != CardStatus.Dead))
+                    {
+                        BattleArena.ActiveBattleTurn.HitEnemyCard(yourCard, enemyCard);
+                    }
+                }
             }
+            // End turn
+            BattleArena.EndTurn(ActivePlayer);
         }
 
+        /// <summary>
+        /// Get emeny active cards
+        /// </summary>
+        /// <returns></returns>
         private List<BattleCard> GetEnemyActiveCards()
         {
             return BattleArena.ActiveState == BattleState.YourTurn
