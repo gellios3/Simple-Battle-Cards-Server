@@ -180,11 +180,13 @@
     <Compile Include="Assets\Scripts\Contexts\AppRoot.cs" />
     <Compile Include="Assets\Scripts\Contexts\ArenaContext.cs" />
     <Compile Include="Assets\Scripts\Contexts\ArenaRoot.cs" />
-    <Compile Include="Assets\Scripts\Models\Arena.cs" />
-    <Compile Include="Assets\Scripts\Models\BattleArena.cs" />
-    <Compile Include="Assets\Scripts\Models\BattleCard.cs" />
-    <Compile Include="Assets\Scripts\Models\BattleTrate.cs" />
-    <Compile Include="Assets\Scripts\Models\BattleTurn.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\Arena.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\ArenaGameManager.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\BattleArena.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\BattleCard.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\BattleItem.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\BattleTrate.cs" />
+    <Compile Include="Assets\Scripts\Models\Arena\BattleTurn.cs" />
     <Compile Include="Assets\Scripts\Models\HistoryItem.cs" />
     <Compile Include="Assets\Scripts\Models\Player.cs" />
     <Compile Include="Assets\Scripts\Models\PlayerCpuBehavior.cs" />
@@ -216,11 +218,11 @@
     <None Include="Assets\Library\StrangeIoC\LICENSE-2.0.txt" />
     <None Include="Assets\Resources\data.xml" />
     <None Include="Assets\Library\StrangeIoC\README.txt" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>E:/UnityProjects/Unity-Home-Work/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/UnityProjects/Unity-Home-Work/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>E:/UnityProjects/Unity-Home-Work/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -417,6 +419,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>E:/UnityProjects/Unity-Home-Work/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/gelli/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -425,9 +430,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/gelli/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>E:/UnityProjects/Unity-Home-Work/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>E:/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

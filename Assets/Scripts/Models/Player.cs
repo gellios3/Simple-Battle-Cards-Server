@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Models.Arena;
 using Models.ScriptableObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,11 +18,12 @@ namespace Models
         /// <summary>
         /// Battle player hand
         /// </summary>
-        private readonly ArrayList _battleHand = new ArrayList();
+        private List<BattleItem> _battleHand = new List<BattleItem>();
 
-        public ArrayList BattleHand
+        public List<BattleItem> BattleHand
         {
             get { return _battleHand; }
+            set { _battleHand = value; }
         }
 
         /// <summary>
@@ -37,9 +39,9 @@ namespace Models
         /// <summary>
         /// Random battle pul with cartd and trates
         /// </summary>
-        private readonly ArrayList _battlePull = new ArrayList();
+        private readonly List<BattleItem> _battlePull = new List<BattleItem>();
 
-        public ArrayList BattlePull
+        public List<BattleItem> BattlePull
         {
             get { return _battlePull; }
         }
@@ -58,6 +60,7 @@ namespace Models
         /// Player Status
         /// </summary>
         public PlayerStatus Status { get; set; }
+
 
         /// <summary>
         /// Pull type
@@ -122,21 +125,24 @@ namespace Models
         /// <summary>
         /// Fill Battle hand
         /// </summary>
-        public void FillBattleHand()
+        public void AddToBattleHand()
         {
-            for (var i = 0; i < 3; i++)
-            {
-                _battleHand.Add(_battlePull[i]);
-                _battlePull.RemoveAt(i);
-            }
-        }
+            if (_battlePull.Count <= 0) return;
 
-        /// <summary>
-        /// Increate battle card fron pull to hand
-        /// </summary>
-        public void IncreaceCardFromPullToHand()
-        {
-            _battleHand.Add(_battlePull[0]);
+            BattleHand.Add(_battlePull[0]);
+
+            var card = _battlePull[0] as BattleCard;
+            if (card != null)
+            {
+                Debug.Log("Player " + Name + " Add " + card.SourceCard.name + " Card");
+            }
+
+            var trate = _battlePull[0] as BattleTrate;
+            if (trate != null)
+            {
+                Debug.Log("Player " + Name + " Add " + trate.SourceTrate.name + " Trate");
+            }
+
             _battlePull.RemoveAt(0);
         }
 

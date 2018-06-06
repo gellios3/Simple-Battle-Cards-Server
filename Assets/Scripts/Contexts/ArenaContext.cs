@@ -1,5 +1,6 @@
 ﻿using Commands;
 using Models;
+using Models.Arena;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
@@ -68,6 +69,7 @@ namespace Contexts
             injectionBinder.Bind<Arena>().ToSingleton();
             injectionBinder.Bind<PlayerCpuBehavior>().ToSingleton();
             injectionBinder.Bind<BattleArena>().ToSingleton();
+            injectionBinder.Bind<ArenaGameManager>().ToSingleton();
 
             commandBinder.Bind<InitArenaSignal>().To<InitArenaCommand>();
 

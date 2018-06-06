@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Arena;
 using Models.ScriptableObjects;
 using strange.extensions.command.impl;
 using Signals.Arena;
@@ -16,24 +17,22 @@ namespace Commands
         public Arena Arena { get; set; }
 
         /// <summary>
-        /// Your CPU Behavior
-        /// </summary>
-        [Inject]
-        public PlayerCpuBehavior YourPlayerCpu { get; set; }
-
-        /// <summary>
-        /// Enemy CPU Behavior
-        /// </summary>
-        [Inject]
-        public PlayerCpuBehavior EnemyPlayerCpu { get; set; }
-
-        /// <summary>
         /// Battle
         /// </summary>
         [Inject]
         public BattleArena BattleArena { get; set; }
 
-        [Inject] public ArenaInitializedSignal ArenaInitializedSignal { get; set; }
+        /// <summary>
+        ///  Arena game manager
+        /// </summary>
+        [Inject]
+        public ArenaGameManager ArenaGameManager { get; set; }
+
+        /// <summary>
+        /// Areana initialed signal
+        /// </summary>
+        [Inject]
+        public ArenaInitializedSignal ArenaInitializedSignal { get; set; }
 
         /// <summary>
         /// Execute event load rooms list 
@@ -44,17 +43,11 @@ namespace Commands
             var deck = Resources.Load<Deck>("Objects/Decks/Regular");
             // init arena
             Arena.Init(deck, deck);
-            Arena.YourPlayer.Name = "Player";
+            Arena.YourPlayer.Name = "HUMAN";
             Arena.EnemyPlayer.Name = "CPU 1";
             // Init batle in your turn
             BattleArena.ActiveState = BattleState.YourTurn;
-            // init current player
-            var player = BattleArena.ActiveState == BattleState.YourTurn ? Arena.YourPlayer : Arena.EnemyPlayer;
-
-            // Init player Cpu Behavior
-            YourPlayerCpu.Init(player);
-            YourPlayerCpu.InitTurn();
-            YourPlayerCpu.MakeBattleTurn();
+            ArenaGameManager.EmulateGame();
 
             Observable.Start(() => { Debug.Log("Logic"); }).ObserveOnMainThread()
                 .Subscribe(res => { ArenaInitializedSignal.Dispatch(); });
