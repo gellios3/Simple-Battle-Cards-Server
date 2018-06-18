@@ -1,26 +1,34 @@
-﻿using UnityEngine.Networking;
+﻿using Server.Interfaces;
+using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 
 namespace Server.Handlers
 {
     public class ChatMessageHandler : IServerHandler
     {
+        /// <summary>
+        /// Message Type
+        /// </summary>
         public short MessageType => MsgId.echoMsgId;
 
-        private readonly NetworkingGameServer _gameServerConnector;
+        /// <summary>
+        /// Game serverService connector
+        /// </summary>
+        public GameServerService GameServerService { private get; set; }
 
-        public ChatMessageHandler(NetworkingGameServer gameServerConnector)
-        {
-            _gameServerConnector = gameServerConnector;
-        }
-
+        /// <summary>
+        /// On
+        /// </summary>
+        /// <param name="message"></param>
         public void Handle(NetworkMessage message)
         {
             var echoMsg = message.ReadMessage<StringMessage>().value;
             echoMsg += " from server";
 
             var responseMsg = new StringMessage(echoMsg);
-            _gameServerConnector.Send(_gameServerConnector.ActiveConnections, MsgId.echoServerResponse, responseMsg);
+            GameServerService.Send(GameServerService.ActiveConnections, MsgId.echoServerResponse,
+                responseMsg);
         }
     }
 }

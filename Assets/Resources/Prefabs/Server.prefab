@@ -19,9 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4133762704122114}
-  - component: {fileID: 114856893258309028}
   - component: {fileID: 114856635048264044}
-  - component: {fileID: 114314920026781552}
+  - component: {fileID: 114429683694470712}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -42,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114314920026781552
+--- !u!114 &114429683694470712
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1915133329162766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 173a15a050e147c9ad30b4a921f24db5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a7d91f4824148c5b5e970d51f3a9adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114856635048264044
@@ -69,14 +68,3 @@ MonoBehaviour:
   _stopButton: {fileID: 0}
   _restartButton: {fileID: 0}
   _logText: {fileID: 0}
---- !u!114 &114856893258309028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915133329162766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cacd2d5dcf44ecea3dd9936e2f10618, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
