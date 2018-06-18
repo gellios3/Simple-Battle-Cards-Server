@@ -52,8 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
-    <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
     <Compile Include="Assets\Library\StrangeIoC\scripts\strange\extensions\command\api\CommandExceptionType.cs" />
     <Compile Include="Assets\Library\StrangeIoC\scripts\strange\extensions\command\api\CommandKeys.cs" />
     <Compile Include="Assets\Library\StrangeIoC\scripts\strange\extensions\command\api\ICommand.cs" />
@@ -190,12 +188,13 @@
     <Compile Include="Assets\Scripts\Client\View\SuperRoomView.cs" />
     <Compile Include="Assets\Scripts\Client\View\TargetMediator.cs" />
     <Compile Include="Assets\Scripts\LaunchMode.cs" />
+    <Compile Include="Assets\Scripts\Server\Handlers\ChatMessageHandler.cs" />
+    <Compile Include="Assets\Scripts\Server\Handlers\ChatModule.cs" />
+    <Compile Include="Assets\Scripts\Server\Handlers\ChatPrintHandler.cs" />
+    <Compile Include="Assets\Scripts\Server\NetworkingGameServer.cs" />
     <Compile Include="Assets\Scripts\Server\Server.cs" />
-    <Compile Include="Assets\Scripts\Server\ServerEchoTest.cs" />
-    <Compile Include="Assets\Scripts\Server\SimpleServerGUI.cs" />
-    <Compile Include="Assets\Scripts\Server\UnityNetworkingServerServer.cs" />
+    <Compile Include="Assets\Scripts\Server\ServerView.cs" />
     <Compile Include="Assets\Scripts\TestEchoClient.cs" />
-    <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\Library\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
     <None Include="Assets\Library\StrangeIoC\LICENSE-2.0.txt" />
     <None Include="Assets\Resources\data.xml" />
@@ -409,9 +408,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>E:/UnityEditor/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>E:/UnityProjects/Unity-Home-Work/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/gelli/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

@@ -5,7 +5,7 @@ using strange.extensions.command.impl;
 using Signals;
 using UniRx;
 
-namespace Commands
+namespace Client.Commands
 {
     public class FetchRoomListCommand : Command
     {

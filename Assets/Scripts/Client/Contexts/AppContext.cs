@@ -1,4 +1,4 @@
-﻿using Commands;
+﻿using Client.Commands;
 using Models;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
