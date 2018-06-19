@@ -1,14 +1,15 @@
 ﻿using Client.Commands;
+using Client.Handlers;
+using Client.Signals;
 using Models;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
-using Signals;
 using UnityEngine;
 using View;
 
-namespace Contexts
+namespace Client.Contexts
 {
     public class AppContext : MVCSContext
     {
@@ -48,7 +49,8 @@ namespace Contexts
         {
             base.Start();
 
-            var startSignal = injectionBinder.GetInstance<LoadRoomListSignal>();
+//            var startSignal = injectionBinder.GetInstance<LoadRoomListSignal>();
+            var startSignal = injectionBinder.GetInstance<LoadGameDataSignal>();
             startSignal.Dispatch();
 
             return this;
@@ -60,13 +62,24 @@ namespace Contexts
         /// </summary>
         protected override void mapBindings()
         {
-            injectionBinder.Bind<LoadRoomListSignal>().ToSingleton();
+            // Bind Signals
+//            injectionBinder.Bind<LoadRoomListSignal>().ToSingleton();
+            injectionBinder.Bind<DisonnectedFromServerSignal>().ToSingleton();
+            injectionBinder.Bind<ServerConnectedResultSignal>().ToSingleton();
+            injectionBinder.Bind<LoadGameDataSignal>().ToSingleton();
             injectionBinder.Bind<RoomsFetchedSignal>().ToSingleton();
 
+            //Bind Services
             injectionBinder.Bind<RoomListData>().ToSingleton();
+            injectionBinder.Bind<ServerConnectorService>().ToSingleton();
+            injectionBinder.Bind<GetServerDataHandler>().ToSingleton();
 
-            commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListCommand>();
+            // Bind Commads
+            commandBinder.Bind<LoadGameDataSignal>().To<LoadGameDataCommand>();
+            commandBinder.Bind<ServerConnectedResultSignal>().To<ServerConectedCommand>();
+//            commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListCommand>();
 
+            //Bind Views
             mediationBinder.Bind<RoomsDropdownView>().To<RoomsDropdownMediator>();
             mediationBinder.Bind<RoomGridView>().To<RoomGridViewMediator>();
         }

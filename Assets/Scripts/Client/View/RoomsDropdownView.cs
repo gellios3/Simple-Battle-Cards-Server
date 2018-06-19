@@ -1,6 +1,6 @@
-﻿using Models;
+﻿using Client.Signals;
+using Models;
 using strange.extensions.mediation.impl;
-using Signals;
 using UnityEngine;
 using UnityEngine.UI;
 

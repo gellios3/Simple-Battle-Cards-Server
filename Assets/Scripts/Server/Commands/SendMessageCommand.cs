@@ -1,4 +1,5 @@
-﻿using strange.extensions.command.impl;
+﻿using Client.Models;
+using strange.extensions.command.impl;
 using UnityEngine.Networking.NetworkSystem;
 
 namespace Server.Commands
@@ -23,7 +24,7 @@ namespace Server.Commands
         {
             Message += " from server";
             var responseMsg = new StringMessage(Message);
-            GameServerService.Send(GameServerService.ActiveConnections, MsgId.echoServerResponse, responseMsg);
+            GameServerService.Send(GameServerService.ActiveConnections, MsgStruct.EchoServerResponse, responseMsg);
         }
     }
 }

@@ -175,48 +175,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &104814498
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646580609470420, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 69744532f23bc4b6f997aeae0fe31b59, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &204790069
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &870584798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,7 +1360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1751214586
 MonoBehaviour:
   m_ObjectHideFlags: 0

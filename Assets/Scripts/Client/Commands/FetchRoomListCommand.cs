@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using Client.Signals;
 using Models;
 using strange.extensions.command.impl;
-using Signals;
 using UniRx;
 
 namespace Client.Commands

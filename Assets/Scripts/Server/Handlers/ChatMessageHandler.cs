@@ -1,4 +1,5 @@
-﻿using Server.Interfaces;
+﻿using Client.Models;
+using Server.Interfaces;
 using Server.Signals;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -11,12 +12,15 @@ namespace Server.Handlers
         /// <summary>
         /// Message Type
         /// </summary>
-        public short MessageType => MsgId.echoMsgId;
+        public short MessageType => MsgStruct.EchoMsgId;
         
+        /// <summary>
+        /// Send message signal
+        /// </summary>
         [Inject] public SendMessageSignal SendMessageSignal { get; set; }
 
         /// <summary>
-        /// On
+        /// On Message Handle 
         /// </summary>
         /// <param name="message"></param>
         public void Handle(NetworkMessage message)
