@@ -179,10 +179,7 @@
     <Compile Include="Assets\Scripts\Client\Handlers\GetServerDataHandler.cs" />
     <Compile Include="Assets\Scripts\Client\Interfaces\IServerConnector.cs" />
     <Compile Include="Assets\Scripts\Client\Interfaces\IServerMessageHandler.cs" />
-    <Compile Include="Assets\Scripts\Client\Models\MsgStruct.cs" />
-    <Compile Include="Assets\Scripts\Client\Models\RegularGame.cs" />
-    <Compile Include="Assets\Scripts\Client\Models\RoomListData.cs" />
-    <Compile Include="Assets\Scripts\Client\Models\SuperGame.cs" />
+    <Compile Include="Assets\Scripts\Client\Models\RoomMessage.cs" />
     <Compile Include="Assets\Scripts\Client\ServerConnectorService.cs" />
     <Compile Include="Assets\Scripts\Client\Signals\DisonnectedFromServerSignal.cs" />
     <Compile Include="Assets\Scripts\Client\Signals\LoadGameDataSignal.cs" />
@@ -195,6 +192,15 @@
     <Compile Include="Assets\Scripts\Client\View\RoomsDropdownView.cs" />
     <Compile Include="Assets\Scripts\Client\View\SuperRoomView.cs" />
     <Compile Include="Assets\Scripts\LaunchMode.cs" />
+    <Compile Include="Assets\Scripts\Models\MsgStruct.cs" />
+    <Compile Include="Assets\Scripts\Models\RegularGame.cs" />
+    <Compile Include="Assets\Scripts\Models\RegularGameStruct.cs" />
+    <Compile Include="Assets\Scripts\Models\RegularGameSyncList.cs" />
+    <Compile Include="Assets\Scripts\Models\RoomListData.cs" />
+    <Compile Include="Assets\Scripts\Models\RoomListMessage.cs" />
+    <Compile Include="Assets\Scripts\Models\RoomListStruct.cs" />
+    <Compile Include="Assets\Scripts\Models\StatusMessage.cs" />
+    <Compile Include="Assets\Scripts\Models\SuperGame.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\SendMessageCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\StartListeningCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Contexts\AppServerContext.cs" />

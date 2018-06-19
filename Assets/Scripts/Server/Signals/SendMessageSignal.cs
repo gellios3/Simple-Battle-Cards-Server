@@ -1,8 +1,9 @@
-﻿using strange.extensions.signal.impl;
+﻿using Models;
+using strange.extensions.signal.impl;
 
 namespace Server.Signals
 {
-    public class SendMessageSignal: Signal<string>
+    public class SendMessageSignal: Signal<StatusMessage>
     {
         
     }

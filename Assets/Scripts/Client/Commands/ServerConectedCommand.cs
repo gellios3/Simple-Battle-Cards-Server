@@ -1,5 +1,6 @@
 ﻿using Client.Handlers;
 using Client.Models;
+using Models;
 using strange.extensions.command.impl;
 using UnityEngine;
 using UnityEngine.Networking.NetworkSystem;
@@ -27,11 +28,9 @@ namespace Client.Commands
         /// </summary>
         public override void Execute()
         {
-            Debug.Log("IsConnected " + IsConnected);
             if (IsConnected)
             {
-                var stringMsg = new StringMessage("test");
-                ServerConnectorService.Send(MsgStruct.EchoMsgId, stringMsg);
+                ServerConnectorService.Send(MsgStruct.EchoMsgId, new StatusMessage());
             }
             else
             {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Client.Models;
+using Models;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Networking.NetworkSystem;
 
 namespace Client.Handlers
 {
@@ -10,13 +10,18 @@ namespace Client.Handlers
     {
         public short MessageType => MsgStruct.EchoServerResponse;
 
-        public List<string> ServerResponses { get; } = new List<string>();
+//        public List<RoomListStruct> ServerResponses { get; } = new List<RoomListStruct>();
 
         public void Handle(NetworkMessage msg)
         {
-            var temp = msg.ReadMessage<StringMessage>().value;
-            Debug.Log(temp);
-            ServerResponses.Add(temp);
+            var temp = msg.ReadMessage<RoomListMessage>();
+            Debug.Log(temp.RegularGames.Count);
+            
+//            ServerResponses.Add(new RoomListStruct
+//            {
+//                RegularGames = temp.RegularGames,
+//                SurerGames = temp.SurerGames
+//            });
         }
     }
 }

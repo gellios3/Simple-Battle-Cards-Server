@@ -1,6 +1,7 @@
-﻿using Client.Models;
+﻿using System.Collections.Generic;
+using Client.Models;
+using Models;
 using strange.extensions.command.impl;
-using UnityEngine.Networking.NetworkSystem;
 
 namespace Server.Commands
 {
@@ -15,16 +16,26 @@ namespace Server.Commands
         /// <summary>
         /// Message
         /// </summary>
-        [Inject] public string Message { get; set; }
+        [Inject]
+        public StatusMessage Message { get; set; }
 
         /// <summary>
         /// Execute
         /// </summary>
         public override void Execute()
         {
-            Message += " from server";
-            var responseMsg = new StringMessage(Message);
-            GameServerService.Send(GameServerService.ActiveConnections, MsgStruct.EchoServerResponse, responseMsg);
+            if (Message.Status == StatusMsg.Sending)
+            {
+                var responseMsg = new RoomListMessage
+                {
+                    RegularGames = new List<RegularGameStruct>()
+                };
+                responseMsg.RegularGames.Add(new RegularGameStruct
+                {
+                    Name = "test"
+                });
+                GameServerService.Send(GameServerService.ActiveConnections, MsgStruct.EchoServerResponse, responseMsg);
+            }
         }
     }
 }

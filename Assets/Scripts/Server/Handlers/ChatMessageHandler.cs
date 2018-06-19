@@ -1,9 +1,8 @@
 ﻿using Client.Models;
+using Models;
 using Server.Interfaces;
 using Server.Signals;
-using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Networking.NetworkSystem;
 
 namespace Server.Handlers
 {
@@ -25,9 +24,8 @@ namespace Server.Handlers
         /// <param name="message"></param>
         public void Handle(NetworkMessage message)
         {
-            var echoMsg = message.ReadMessage<StringMessage>().value;
+            var echoMsg = message.ReadMessage<StatusMessage>();
             SendMessageSignal.Dispatch(echoMsg);
-
         }
     }
 }

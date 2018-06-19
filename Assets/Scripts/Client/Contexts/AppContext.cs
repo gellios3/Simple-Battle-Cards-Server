@@ -1,5 +1,6 @@
 ﻿using Client.Commands;
 using Client.Handlers;
+using Client.Models;
 using Client.Signals;
 using Models;
 using strange.extensions.command.api;
