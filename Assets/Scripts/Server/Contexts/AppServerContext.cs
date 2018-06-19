@@ -48,7 +48,7 @@ namespace Server.Contexts
         {
             base.Start();
 
-            var startSignal = injectionBinder.GetInstance<OnListeningServerSignal>();
+            var startSignal = injectionBinder.GetInstance<StartListeningServerSignal>();
             startSignal.Dispatch();
 
             return this;
@@ -62,14 +62,18 @@ namespace Server.Contexts
         {
             // Bind Signals
             injectionBinder.Bind<ServerConnectedSignal>().ToSingleton();
-            injectionBinder.Bind<OnListeningServerSignal>().ToSingleton();
+            injectionBinder.Bind<StartListeningServerSignal>().ToSingleton();
+            injectionBinder.Bind<ServerErrorSignal>().ToSingleton();
+            injectionBinder.Bind<DisconnectSignal>().ToSingleton();
+            injectionBinder.Bind<SendMessageSignal>().ToSingleton();
 
             // Bind Services
             injectionBinder.Bind<GameServerService>().ToSingleton();
             injectionBinder.Bind<ChatMessageHandler>().ToSingleton();
 
             // Bind Commands
-            commandBinder.Bind<OnListeningServerSignal>().To<OnListeningServerCommand>();
+            commandBinder.Bind<StartListeningServerSignal>().To<StartListeningCommand>();
+            commandBinder.Bind<SendMessageSignal>().To<SendMessageCommand>();
 
             // Bind Views   
             mediationBinder.Bind<ServerView>().To<ServerViewMediator>();

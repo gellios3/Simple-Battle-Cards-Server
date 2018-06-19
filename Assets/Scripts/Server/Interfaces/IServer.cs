@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Server.Signals;
 using UnityEngine.Networking;
 
 namespace Server.Interfaces
@@ -12,11 +13,6 @@ namespace Server.Interfaces
 
         void Send(IEnumerable<int> connectionId, short msgType, MessageBase msg);
         void RegisterFeatureHandlers(IEnumerable<IServerFeature> handlers);
-
-//        event Action<bool> OnServerConnected;
-        
-        event Action<string> OnServerError;
-        event Action<bool> OnServerDisconnect;
 
         IEnumerable<int> ActiveConnections { get; }
     }

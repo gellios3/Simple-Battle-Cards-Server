@@ -1,61 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Server.Interfaces;
-using Server.Signals;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.Networking.NetworkSystem;
 
 namespace Server
 {
     public class GameServerService : IServer
     {
-
-        [Inject] public ServerConnectedSignal ServerConnectedSignal { get; set; }
-        
-        public event Action<string> OnServerError = delegate { };
-        public event Action<bool> OnServerDisconnect = delegate { };
-
+        /// <summary>
+        /// Start server
+        /// </summary>
+        /// <param name="port"></param>
         public void StartServer(int port)
         {
             NetworkServer.Listen(port);
             Debug.Log("Start listening server on port " + port);
         }
 
+        /// <summary>
+        /// Restart server
+        /// </summary>
+        /// <param name="port"></param>
         public void Restart(int port)
         {
             Shutdown();
             StartServer(port);
         }
 
+        /// <summary>
+        /// Shutdown server
+        /// </summary>
         public void Shutdown()
         {
             NetworkServer.Shutdown();
             Debug.Log("Stop server");
         }
 
-        public void OnConnectToServer(NetworkMessage msg)
-        {
-            ServerConnectedSignal.Dispatch(true);
-        }
-
-        public void OnDisconnectFromServer(NetworkMessage msg)
-        {
-            OnServerDisconnect(true);
-        }
-
-        public void OnServerErrorMethod(NetworkMessage msg)
-        {
-            var error = msg.ReadMessage<ErrorMessage>();
-            OnServerError(error.ToString());
-        }
-
+        /// <summary>
+        /// Send message
+        /// </summary>
+        /// <param name="connectionId"></param>
+        /// <param name="msgType"></param>
+        /// <param name="msg"></param>
         public void Send(IEnumerable<int> connectionId, short msgType, MessageBase msg)
         {
             NetworkServer.SendToAll(msgType, msg);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handlers"></param>
         public void RegisterFeatureHandlers(IEnumerable<IServerFeature> handlers)
         {
             foreach (var handler in handlers)
@@ -67,6 +63,9 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Active connections
+        /// </summary>
         public IEnumerable<int> ActiveConnections
         {
             get

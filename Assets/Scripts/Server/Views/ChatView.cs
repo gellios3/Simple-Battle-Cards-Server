@@ -8,9 +8,9 @@ namespace Server.Views
 {
     public class ChatView : EventView, IServerFeature
     {
-        
-        [Inject] public GameServerService GameServerServiceConnector { get; set; }
-        
+                
+        [Inject] public ChatMessageHandler ChatMessageHandler { get; set; }
+
         /// <summary>
         /// Handlers
         /// </summary>
@@ -19,10 +19,7 @@ namespace Server.Views
         {
             return new List<IServerHandler>
             {
-                new ChatMessageHandler
-                {
-                    GameServerService = GameServerServiceConnector
-                }
+                ChatMessageHandler
             };
         }
     }

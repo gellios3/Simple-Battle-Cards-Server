@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Models;
 using strange.extensions.mediation.impl;
 using Server.Signals;
-using Signals;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -38,30 +36,50 @@ namespace Server.Views
         /// Log text
         /// </summary>
         [SerializeField] private Text _logText;
-        
+
         /// <summary>
         /// Networking game server
         /// </summary>
         [Inject]
         public GameServerService GameServerService { get; set; }
 
+        /// <summary>
+        /// Server port
+        /// </summary>
         private int _serverPort = 45555;
+
+        /// <summary>
+        /// SErver status
+        /// </summary>
         private string _serverStatus = "disconnected";
+
+        /// <summary>
+        /// Server errors
+        /// </summary>
         private readonly List<string> _serverErrors = new List<string>();
 
+        /// <summary>
+        /// On enable view
+        /// </summary>
         private void OnEnable()
         {
             _posrtField.text = _serverPort.ToString();
+            // on end edit save port
             _posrtField.onEndEdit.AddListener(delegate
             {
                 _serverPort = int.TryParse(_posrtField.text, out _serverPort) ? _serverPort : 45555;
                 _posrtField.text = _serverPort.ToString();
             });
+            
+            // add buttons on click events
             _startButton.OnClickAsObservable().Subscribe(p => { GameServerService.StartServer(_serverPort); });
             _restartButton.OnClickAsObservable().Subscribe(p => { GameServerService.Restart(_serverPort); });
             _stopButton.OnClickAsObservable().Subscribe(p => { GameServerService.Shutdown(); });
         }
 
+        /// <summary>
+        /// Update view
+        /// </summary>
         private void Update()
         {
             if (!NetworkServer.active)
@@ -82,6 +100,9 @@ namespace Server.Views
             }
         }
 
+        /// <summary>
+        /// Init text log
+        /// </summary>
         private void InitLog()
         {
             var textBulder = new StringBuilder();
@@ -98,17 +119,20 @@ namespace Server.Views
         }
 
 
+        /// <summary>
+        /// On change status
+        /// </summary>
+        /// <param name="str"></param>
         public void ChangeStatus(string str)
         {
             _serverStatus = str;
         }
 
-        private void OnGameServerDisconnected(bool succes)
-        {
-            _serverStatus = "disconnected";
-        }
-
-        private void OnGameServerError(string errorMsg)
+        /// <summary>
+        /// Add server errors
+        /// </summary>
+        /// <param name="errorMsg"></param>
+        public void OnGameServerError(string errorMsg)
         {
             _serverErrors.Add(errorMsg);
         }
@@ -120,19 +144,38 @@ namespace Server.Views
     /// </summary>
     public class ServerViewMediator : TargetMediator<ServerView>
     {
-        
-        [Inject] public ServerConnectedSignal ServerConnectedSignal { get; set; }
+        /// <summary>
+        /// Server connected signal
+        /// </summary>
+        [Inject]
+        public ServerConnectedSignal ServerConnectedSignal { get; set; }
 
+        /// <summary>
+        /// Disconnect server signal
+        /// </summary>
+        [Inject]
+        public DisconnectSignal DisconnectSignal { get; set; }
+
+        /// <summary>
+        /// On sever error 
+        /// </summary>
+        [Inject]
+        public ServerErrorSignal ServerErrorSignal { get; set; }
+
+        /// <summary>
+        /// On register
+        /// </summary>
         public override void OnRegister()
         {
-            ServerConnectedSignal.AddListener(OnGameServerConnected);
-//            GameServer.OnServerDisconnect += OnGameServerDisconnected;
-//            GameServer.OnServerError += OnGameServerError;
-        }
-
-        private void OnGameServerConnected(bool success)
-        {
-            View.ChangeStatus(success ? "Connected" : "Connected Error!");
+            ServerConnectedSignal.AddListener(success =>
+            {
+                View.ChangeStatus(success ? "Connected" : "Connected Error!");
+            });
+            DisconnectSignal.AddListener(success =>
+            {
+                View.ChangeStatus(success ? "Disconnected" : "Disconnected Error!");
+            });
+            ServerErrorSignal.AddListener(View.OnGameServerError);
         }
     }
 }

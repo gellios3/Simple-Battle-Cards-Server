@@ -1,4 +1,5 @@
 ﻿using Server.Interfaces;
+using Server.Signals;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
@@ -11,11 +12,8 @@ namespace Server.Handlers
         /// Message Type
         /// </summary>
         public short MessageType => MsgId.echoMsgId;
-
-        /// <summary>
-        /// Game serverService connector
-        /// </summary>
-        public GameServerService GameServerService { private get; set; }
+        
+        [Inject] public SendMessageSignal SendMessageSignal { get; set; }
 
         /// <summary>
         /// On
@@ -24,11 +22,8 @@ namespace Server.Handlers
         public void Handle(NetworkMessage message)
         {
             var echoMsg = message.ReadMessage<StringMessage>().value;
-            echoMsg += " from server";
+            SendMessageSignal.Dispatch(echoMsg);
 
-            var responseMsg = new StringMessage(echoMsg);
-            GameServerService.Send(GameServerService.ActiveConnections, MsgId.echoServerResponse,
-                responseMsg);
         }
     }
 }

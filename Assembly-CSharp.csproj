@@ -187,7 +187,8 @@
     <Compile Include="Assets\Scripts\Client\View\RoomsDropdownView.cs" />
     <Compile Include="Assets\Scripts\Client\View\SuperRoomView.cs" />
     <Compile Include="Assets\Scripts\LaunchMode.cs" />
-    <Compile Include="Assets\Scripts\Server\Commands\OnListeningServerCommand.cs" />
+    <Compile Include="Assets\Scripts\Server\Commands\SendMessageCommand.cs" />
+    <Compile Include="Assets\Scripts\Server\Commands\StartListeningCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Contexts\AppServerContext.cs" />
     <Compile Include="Assets\Scripts\Server\Contexts\AppServerRoot.cs" />
     <Compile Include="Assets\Scripts\Server\GameServerService.cs" />
@@ -195,9 +196,12 @@
     <Compile Include="Assets\Scripts\Server\Interfaces\IServer.cs" />
     <Compile Include="Assets\Scripts\Server\Interfaces\IServerFeature.cs" />
     <Compile Include="Assets\Scripts\Server\Interfaces\IServerHandler.cs" />
-    <Compile Include="Assets\Scripts\Server\Signals\OnListeningServerSignal.cs" />
+    <Compile Include="Assets\Scripts\Server\Signals\DisconnectSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\RestartServerSignal.cs" />
+    <Compile Include="Assets\Scripts\Server\Signals\SendMessageSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\ServerConnectedSignal.cs" />
+    <Compile Include="Assets\Scripts\Server\Signals\ServerErrorSignal.cs" />
+    <Compile Include="Assets\Scripts\Server\Signals\StartListeningServerSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\StartServerSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\StopServerSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Views\ChatView.cs" />
