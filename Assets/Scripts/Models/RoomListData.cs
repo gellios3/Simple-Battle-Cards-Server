@@ -12,6 +12,6 @@ namespace Models
         /// <summary>
         /// Regular games list
         /// </summary>
-        public List<RegularGame> RegularGames { get; } = new List<RegularGame>();
+        public List<RegularGame.LoadRegularGame> RegularGames { get; } = new List<RegularGame.LoadRegularGame>();
     }
 }

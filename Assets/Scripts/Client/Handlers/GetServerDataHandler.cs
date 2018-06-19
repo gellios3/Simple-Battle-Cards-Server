@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Client.Models;
-using Models;
+﻿using Client.Models;
+using Models.RegularGame;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -14,9 +13,9 @@ namespace Client.Handlers
 
         public void Handle(NetworkMessage msg)
         {
-            var temp = msg.ReadMessage<RoomListMessage>();
-            Debug.Log(temp.RegularGames.Count);
-            
+            var temp = msg.ReadMessage<RegularGameMessage>();
+            Debug.Log(temp.Name);
+
 //            ServerResponses.Add(new RoomListStruct
 //            {
 //                RegularGames = temp.RegularGames,

@@ -3,6 +3,7 @@ using System.Xml.Linq;
 using Client.Models;
 using Client.Signals;
 using Models;
+using Models.RegularGame;
 using strange.extensions.command.impl;
 using UniRx;
 
@@ -35,7 +36,7 @@ namespace Client.Commands
                 var xRegularGames = xDocument.Descendants("room").ToArray();
                 foreach (var game in xRegularGames)
                 {
-                    RoomListData.RegularGames.Add(new RegularGame(game));
+                    RoomListData.RegularGames.Add(new LoadRegularGame(game));
                 }
 
                 RoomListData.RegularGames.Sort((a, b) => string.CompareOrdinal(a.Name, b.Name));

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Client.Models;
+﻿using Client.Models;
 using Models;
+using Models.RegularGame;
 using strange.extensions.command.impl;
 
 namespace Server.Commands
@@ -26,14 +26,13 @@ namespace Server.Commands
         {
             if (Message.Status == StatusMsg.Sending)
             {
-                var responseMsg = new RoomListMessage
+                var responseMsg = new RegularGameMessage
                 {
-                    RegularGames = new List<RegularGameStruct>()
+                    Name = "test",
+                    CurrentPlayers = 0,
+                    MaxPlayers = 10,
+                    Price = 100
                 };
-                responseMsg.RegularGames.Add(new RegularGameStruct
-                {
-                    Name = "test"
-                });
                 GameServerService.Send(GameServerService.ActiveConnections, MsgStruct.EchoServerResponse, responseMsg);
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Client.Models;
 using Contexts;
 using Models;
+using Models.RegularGame;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ namespace View
         /// <summary>
         /// REgular game
         /// </summary>
-        public RegularGame Game { private get; set; }
+        public LoadRegularGame Game { private get; set; }
 
         /// <summary>
         /// Room name text 
