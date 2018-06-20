@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Models.RegularGame;
 using strange.extensions.mediation.impl;
-using Server.Models;
 using Server.Signals;
 using UniRx;
 using UnityEngine;
@@ -45,7 +43,11 @@ namespace Server.Views
         [Inject]
         public GameServerService GameServerService { get; set; }
 
-        [Inject] public StartServerSignal StartServerSignal { get; set; }
+        /// <summary>
+        /// Start server signal
+        /// </summary>
+        [Inject]
+        public StartServerSignal StartServerSignal { get; set; }
 
         /// <summary>
         /// Server port

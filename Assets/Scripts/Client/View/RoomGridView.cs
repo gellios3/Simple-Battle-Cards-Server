@@ -1,6 +1,4 @@
-﻿using Models;
-using strange.extensions.mediation.impl;
-using Server.Models;
+﻿using strange.extensions.mediation.impl;
 using View;
 
 namespace Client.View
@@ -11,8 +9,8 @@ namespace Client.View
         /// On rooms fetched
         /// </summary>
         /// <param name="gamesSyncList"></param>
-        public void OnRoomsFetched(GamesSyncList gamesSyncList)
-        {
+//        public void OnRoomsFetched(GamesSyncList gamesSyncList)
+//        {
 //            // init super rooms
 //            foreach (var game in roomListData.SurerGames)
 //            {
@@ -32,7 +30,7 @@ namespace Client.View
 //                );
 //                regularRoom.GetComponent<RegularRoomView>().Game = game;
 //            }
-        }
+//        }
     }
 
     /// <summary>

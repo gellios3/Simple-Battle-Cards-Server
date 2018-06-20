@@ -10,12 +10,10 @@ namespace Client.Commands
     public class ServerConectedCommand : Command
     {
         /// <summary>
-        /// Get server data handler
+        /// Server connector service
         /// </summary>
         [Inject]
-        public GetServerDataHandler GetServerDataHandler { get; set; }
-
-        [Inject] public ServerConnectorService ServerConnectorService { get; set; }
+        public ServerConnectorService ServerConnectorService { get; set; }
 
         /// <summary>
         /// Is connected
@@ -30,7 +28,17 @@ namespace Client.Commands
         {
             if (IsConnected)
             {
-                ServerConnectorService.Send(MsgStruct.EchoMsgId, new StatusMessage());
+                ServerConnectorService.Send(MsgStruct.EchoMsgId, new ClientMessage
+                {
+                    RoomType = RoomType.Super,
+                    Status = StatusMsg.Adding
+                });
+                
+                ServerConnectorService.Send(MsgStruct.EchoMsgId, new ClientMessage
+                {
+                    RoomType = RoomType.Regular,
+                    Status = StatusMsg.Adding
+                });
             }
             else
             {

@@ -71,7 +71,8 @@ namespace Client.Contexts
             //Bind Services
             injectionBinder.Bind<RoomsListData>().ToSingleton();
             injectionBinder.Bind<ServerConnectorService>().ToSingleton();
-            injectionBinder.Bind<GetServerDataHandler>().ToSingleton();
+            injectionBinder.Bind<GetServerRegularRoomHandler>().ToSingleton();
+            injectionBinder.Bind<GetServerSuperRoomHandler>().ToSingleton();
 
             // Bind Commads
             commandBinder.Bind<LoadGameDataSignal>().To<LoadGameDataCommand>();

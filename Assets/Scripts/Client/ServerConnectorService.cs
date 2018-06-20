@@ -18,12 +18,14 @@ namespace Client
         private const int Port = 45555;
 
         private NetworkClient _client;
-        
+
         /// <summary>
         /// Get server data handler
         /// </summary>
         [Inject]
-        public GetServerDataHandler GetServerDataHandler { get; set; }
+        public GetServerRegularRoomHandler GetServerRegularRoomHandler { get; set; }
+
+        [Inject] public GetServerSuperRoomHandler GetServerSuperRoomHandler { get; set; }
 
         [Inject] public DisonnectedFromServerSignal DisonnectedFromServerSignal { get; set; }
 
@@ -34,8 +36,7 @@ namespace Client
             _client = new NetworkClient();
             _client.Connect(Url, Port);
             _client.RegisterHandler(MsgType.Connect, msg => { ServerConnectedResultSignal.Dispatch(true); });
-            RegisterHandlers(new List<IServerMessageHandler> {GetServerDataHandler});
-            
+            RegisterHandlers(new List<IServerMessageHandler> {GetServerRegularRoomHandler, GetServerSuperRoomHandler});
         }
 
         public void DisconectFromServer()

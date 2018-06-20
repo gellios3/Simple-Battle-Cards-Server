@@ -1,7 +1,4 @@
-﻿using Models.RegularGame;
-using strange.extensions.command.impl;
-using Server.Models;
-using UnityEngine;
+﻿using strange.extensions.command.impl;
 
 namespace Server.Commands
 {
@@ -13,14 +10,17 @@ namespace Server.Commands
         [Inject]
         public GameServerService GameServerService { get; set; }
 
-        [Inject] public int serverPort { get; set; }
+        /// <summary>
+        /// Server port
+        /// </summary>
+        [Inject] public int ServerPort { get; set; }
 
         /// <summary>
         /// Execute
         /// </summary>
         public override void Execute()
         {
-            GameServerService.StartServer(serverPort);
+            GameServerService.StartServer(ServerPort);
         }
     }
 }

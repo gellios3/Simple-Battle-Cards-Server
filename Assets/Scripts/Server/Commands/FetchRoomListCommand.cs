@@ -4,10 +4,8 @@ using Models;
 using Models.RegularGame;
 using Models.SuperGame;
 using strange.extensions.command.impl;
-using Server.Models;
 using Server.Signals;
 using UniRx;
-using UnityEngine;
 
 namespace Server.Commands
 {
@@ -18,13 +16,10 @@ namespace Server.Commands
         /// </summary>
         [Inject]
         public StartListeningServerSignal ListeningServerSignal { get; set; }
-
+        
         /// <summary>
-        /// Rooms list data
+        /// Room list data
         /// </summary>
-        [Inject]
-        public GamesSyncList GamesSyncList { get; set; }
-
         [Inject] public RoomsListData RoomsListData { get; set; }
 
         /// <summary>

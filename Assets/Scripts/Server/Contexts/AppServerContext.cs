@@ -5,7 +5,6 @@ using strange.extensions.context.api;
 using strange.extensions.context.impl;
 using Server.Commands;
 using Server.Handlers;
-using Server.Models;
 using Server.Signals;
 using Server.Views;
 using UnityEngine;
@@ -69,18 +68,19 @@ namespace Server.Contexts
             injectionBinder.Bind<StartListeningServerSignal>().ToSingleton();
             injectionBinder.Bind<ServerErrorSignal>().ToSingleton();
             injectionBinder.Bind<DisconnectSignal>().ToSingleton();
-            injectionBinder.Bind<SendMessageSignal>().ToSingleton();
+            injectionBinder.Bind<SendRegularRoomMessageSignal>().ToSingleton();
+            injectionBinder.Bind<SendSuperRoomMessageSignal>().ToSingleton();
             injectionBinder.Bind<StartServerSignal>().ToSingleton();
 
             // Bind Services
             injectionBinder.Bind<GameServerService>().ToSingleton();
             injectionBinder.Bind<ChatMessageHandler>().ToSingleton();
-            injectionBinder.Bind<GamesSyncList>().ToSingleton();
             injectionBinder.Bind<RoomsListData>().ToSingleton();
 
             // Bind Commands
             commandBinder.Bind<StartListeningServerSignal>().To<StartListeningCommand>();
-            commandBinder.Bind<SendMessageSignal>().To<SendMessageCommand>();
+            commandBinder.Bind<SendRegularRoomMessageSignal>().To<SendRegularRoomMessageCommand>();
+            commandBinder.Bind<SendSuperRoomMessageSignal>().To<SendSuperRoomMessageCommand>();
             commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListCommand>();
             commandBinder.Bind<StartServerSignal>().To<StartServerCommand>();
             commandBinder.Bind<ServerConnectedSignal>().To<ServerConnectedCommand>();

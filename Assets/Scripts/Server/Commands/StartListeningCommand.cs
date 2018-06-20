@@ -38,30 +38,6 @@ namespace Server.Commands
                 var error = msg.ReadMessage<ErrorMessage>();
                 ServerErrorSignal.Dispatch(error.ToString());
             });
-            //                    // init regular game sync list
-//                    foreach (var game in res.RegularGames)
-//                    {
-//                        GamesSyncList.RegularGames.Add(new StructRegularGame
-//                        {
-//                            Id = game.Id,
-//                            MaxPlayers = game.MaxPlayers,
-//                            Name = game.Name,
-//                            CurrentPlayers = game.CurrentPlayers,
-//                            Price = game.Price
-//                        });
-//                    }
-//
-//                    // init super game sync list
-//                    foreach (var game in res.SuperGames)
-//                    {
-//                        GamesSyncList.SurerGames.Add(new StructSuperGame
-//                        {
-//                            Id = game.Id,
-//                            MaxPlayers = game.MaxPlayers,
-//                            CurrentPlayers = game.CurrentPlayers,
-//                            Price = game.Price
-//                        });
-//                    }
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using Client.Models;
-using Client.Signals;
-using Models;
-using strange.extensions.mediation.impl;
-using Server.Models;
-using Server.Signals;
+﻿using strange.extensions.mediation.impl;
 using UnityEngine;
 using UnityEngine.UI;
+using View;
 
-namespace View
+namespace Client.View
 {
     public class RoomsDropdownView : EventView
     {
@@ -41,22 +37,22 @@ namespace View
             Debug.Log(index);
         }
 
-        /// <summary>
-        /// On rooms fetched
-        /// </summary>
-        /// <param name="gamesSyncList"></param>
-        public void OnRoomsFetched(GamesSyncList gamesSyncList)
-        {
-            GetComponent<Dropdown>().ClearOptions();
-            // init dropdown options
-            foreach (var game in gamesSyncList.RegularGames)
-            {
-                GetComponent<Dropdown>().options.Add(new Dropdown.OptionData(game.Name));
-            }
-
-            // set firt option as label
-            _dropdownLabel.text = GetComponent<Dropdown>().options[0].text;
-        }
+//        /// <summary>
+//        /// On rooms fetched
+//        /// </summary>
+//        /// <param name="gamesSyncList"></param>
+//        public void OnRoomsFetched(GamesSyncList gamesSyncList)
+//        {
+//            GetComponent<Dropdown>().ClearOptions();
+//            // init dropdown options
+//            foreach (var game in gamesSyncList.RegularGames)
+//            {
+//                GetComponent<Dropdown>().options.Add(new Dropdown.OptionData(game.Name));
+//            }
+//
+//            // set firt option as label
+//            _dropdownLabel.text = GetComponent<Dropdown>().options[0].text;
+//        }
     }
 
     /// <summary>
@@ -72,8 +68,8 @@ namespace View
         /// <summary>
         /// Room list data
         /// </summary>
-        [Inject]
-        public GamesSyncList GamesSyncList { get; set; }
+//        [Inject]
+//        public GamesSyncList GamesSyncList { get; set; }
 
         /// <summary>
         /// On register
@@ -88,7 +84,7 @@ namespace View
         /// </summary>
         private void OnRoomsFetched()
         {
-            View.OnRoomsFetched(GamesSyncList);
+//            View.OnRoomsFetched(GamesSyncList);
         }
     }
 }
