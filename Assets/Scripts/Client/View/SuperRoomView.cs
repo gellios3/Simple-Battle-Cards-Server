@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using Models.SuperGame;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +9,7 @@ namespace View
         /// <summary>
         /// Super game
         /// </summary>
-        public SuperGame Game { private get; set; }
+        public BaseSuperGame Game { private get; set; }
 
         /// <summary>
         /// Status scrollbar

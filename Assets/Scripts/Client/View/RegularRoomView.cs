@@ -1,20 +1,17 @@
-﻿using Client.Models;
-using Contexts;
-using Models;
-using Models.RegularGame;
+﻿using Models.RegularGame;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace View
+namespace Client.View
 {
     public class RegularRoomView : MonoBehaviour
     {
         /// <summary>
         /// REgular game
         /// </summary>
-        public LoadRegularGame Game { private get; set; }
+        public BaseRegularGame Game { private get; set; }
 
         /// <summary>
         /// Room name text 

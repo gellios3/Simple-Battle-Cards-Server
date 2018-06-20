@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Models.RegularGame;
 using strange.extensions.mediation.impl;
+using Server.Models;
 using Server.Signals;
 using UniRx;
 using UnityEngine;
@@ -43,6 +45,8 @@ namespace Server.Views
         [Inject]
         public GameServerService GameServerService { get; set; }
 
+        [Inject] public StartServerSignal StartServerSignal { get; set; }
+
         /// <summary>
         /// Server port
         /// </summary>
@@ -70,9 +74,9 @@ namespace Server.Views
                 _serverPort = int.TryParse(_posrtField.text, out _serverPort) ? _serverPort : 45555;
                 _posrtField.text = _serverPort.ToString();
             });
-            
+
             // add buttons on click events
-            _startButton.OnClickAsObservable().Subscribe(p => { GameServerService.StartServer(_serverPort); });
+            _startButton.OnClickAsObservable().Subscribe(p => { StartServerSignal.Dispatch(_serverPort); });
             _restartButton.OnClickAsObservable().Subscribe(p => { GameServerService.Restart(_serverPort); });
             _stopButton.OnClickAsObservable().Subscribe(p => { GameServerService.Shutdown(); });
         }

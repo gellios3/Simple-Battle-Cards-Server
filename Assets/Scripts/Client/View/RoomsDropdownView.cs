@@ -2,6 +2,8 @@
 using Client.Signals;
 using Models;
 using strange.extensions.mediation.impl;
+using Server.Models;
+using Server.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,12 +44,12 @@ namespace View
         /// <summary>
         /// On rooms fetched
         /// </summary>
-        /// <param name="roomListData"></param>
-        public void OnRoomsFetched(RoomListData roomListData)
+        /// <param name="gamesSyncList"></param>
+        public void OnRoomsFetched(GamesSyncList gamesSyncList)
         {
             GetComponent<Dropdown>().ClearOptions();
             // init dropdown options
-            foreach (var game in roomListData.RegularGames)
+            foreach (var game in gamesSyncList.RegularGames)
             {
                 GetComponent<Dropdown>().options.Add(new Dropdown.OptionData(game.Name));
             }
@@ -65,21 +67,20 @@ namespace View
         /// <summary>
         /// Rooms fetch signal
         /// </summary>
-        [Inject]
-        public RoomsFetchedSignal RoomsFetchedSignal { get; set; }
+//        [Inject]public RoomsFetchedSignal RoomsFetchedSignal { get; set; }
 
         /// <summary>
         /// Room list data
         /// </summary>
         [Inject]
-        public RoomListData RoomListData { get; set; }
+        public GamesSyncList GamesSyncList { get; set; }
 
         /// <summary>
         /// On register
         /// </summary>
         public override void OnRegister()
         {
-            RoomsFetchedSignal.AddListener(OnRoomsFetched);
+//            RoomsFetchedSignal.AddListener(OnRoomsFetched);
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace View
         /// </summary>
         private void OnRoomsFetched()
         {
-            View.OnRoomsFetched(RoomListData);
+            View.OnRoomsFetched(GamesSyncList);
         }
     }
 }

@@ -2,11 +2,13 @@
 using Client.Handlers;
 using Client.Models;
 using Client.Signals;
+using Client.View;
 using Models;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
+using Server.Signals;
 using UnityEngine;
 using View;
 
@@ -49,8 +51,6 @@ namespace Client.Contexts
         public override IContext Start()
         {
             base.Start();
-
-//            var startSignal = injectionBinder.GetInstance<LoadRoomListSignal>();
             var startSignal = injectionBinder.GetInstance<LoadGameDataSignal>();
             startSignal.Dispatch();
 
@@ -64,21 +64,18 @@ namespace Client.Contexts
         protected override void mapBindings()
         {
             // Bind Signals
-//            injectionBinder.Bind<LoadRoomListSignal>().ToSingleton();
             injectionBinder.Bind<DisonnectedFromServerSignal>().ToSingleton();
             injectionBinder.Bind<ServerConnectedResultSignal>().ToSingleton();
             injectionBinder.Bind<LoadGameDataSignal>().ToSingleton();
-            injectionBinder.Bind<RoomsFetchedSignal>().ToSingleton();
 
             //Bind Services
-            injectionBinder.Bind<RoomListData>().ToSingleton();
+            injectionBinder.Bind<RoomsListData>().ToSingleton();
             injectionBinder.Bind<ServerConnectorService>().ToSingleton();
             injectionBinder.Bind<GetServerDataHandler>().ToSingleton();
 
             // Bind Commads
             commandBinder.Bind<LoadGameDataSignal>().To<LoadGameDataCommand>();
             commandBinder.Bind<ServerConnectedResultSignal>().To<ServerConectedCommand>();
-//            commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListCommand>();
 
             //Bind Views
             mediationBinder.Bind<RoomsDropdownView>().To<RoomsDropdownMediator>();
