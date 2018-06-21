@@ -67,6 +67,12 @@ namespace Client.Contexts
             injectionBinder.Bind<DisonnectedFromServerSignal>().ToSingleton();
             injectionBinder.Bind<ServerConnectedResultSignal>().ToSingleton();
             injectionBinder.Bind<LoadGameDataSignal>().ToSingleton();
+            injectionBinder.Bind<UpdateRegularGameDataSignal>().ToSingleton();
+            injectionBinder.Bind<AddRegularGameViewSignal>().ToSingleton();
+            injectionBinder.Bind<UpdateSuperGameDataSignal>().ToSingleton();
+            injectionBinder.Bind<AddSuperGameViewSignal>().ToSingleton();
+            injectionBinder.Bind<UpdateRegularGameViewSignal>().ToSingleton();
+            injectionBinder.Bind<ServerUpdateRegularGameSignal>().ToSingleton();
 
             //Bind Services
             injectionBinder.Bind<RoomsListData>().ToSingleton();
@@ -77,10 +83,14 @@ namespace Client.Contexts
             // Bind Commads
             commandBinder.Bind<LoadGameDataSignal>().To<LoadGameDataCommand>();
             commandBinder.Bind<ServerConnectedResultSignal>().To<ServerConectedCommand>();
+            commandBinder.Bind<UpdateRegularGameDataSignal>().To<UpdateRegularGameCommand>();
+            commandBinder.Bind<UpdateSuperGameDataSignal>().To<UpdateSuperGameCommand>();
+            commandBinder.Bind<ServerUpdateRegularGameSignal>().To<ServerUpdateRegularGameCommand>();
 
             //Bind Views
             mediationBinder.Bind<RoomsDropdownView>().To<RoomsDropdownMediator>();
-            mediationBinder.Bind<RoomGridView>().To<RoomGridViewMediator>();
+            mediationBinder.Bind<RoomListView>().To<RoomGridViewMediator>();
+            mediationBinder.Bind<RegularRoomView>().To<RegularRoomViewMediator>();
         }
     }
 }

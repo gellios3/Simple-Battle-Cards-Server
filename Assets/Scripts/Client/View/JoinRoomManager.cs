@@ -5,6 +5,6 @@ public class JoinRoomManager : MonoBehaviour {
 
 	public void loadRoomList()
 	{
-		SceneManager.LoadSceneAsync("RoomList");
+		SceneManager.UnloadSceneAsync("JoinRoom");
 	}
 }

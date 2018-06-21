@@ -45,19 +45,51 @@ namespace Server.Handlers
             switch (clientMsg.RoomType)
             {
                 case RoomType.Regular:
-                    if (clientMsg.Status == StatusMsg.Adding)
+                    switch (clientMsg.Status)
                     {
-                        foreach (var regularGame in RoomsListData.RegularGames)
-                        {
-                            SendRegularRoomMessageSignal.Dispatch(new RegularGameMessage
+                        case StatusMsg.Adding:
+                            foreach (var regularGame in RoomsListData.RegularGames)
                             {
-                                CurrentPlayers = regularGame.CurrentPlayers,
-                                Id = regularGame.Id,
-                                MaxPlayers = regularGame.MaxPlayers,
-                                Name = regularGame.Name,
-                                Price = regularGame.Price
-                            });
-                        }
+                                SendRegularRoomMessageSignal.Dispatch(new RegularGameMessage
+                                {
+                                    CurrentPlayers = regularGame.CurrentPlayers,
+                                    Id = regularGame.Id,
+                                    MaxPlayers = regularGame.MaxPlayers,
+                                    Name = regularGame.Name,
+                                    Price = regularGame.Price
+                                });
+                            }
+
+                            break;
+                        case StatusMsg.Editing:
+                            if (clientMsg.Id != null)
+                            {
+                                var index = RoomsListData.RegularGames.FindIndex(game => game.Id == clientMsg.Id);
+                                if (index > 0)
+                                {
+                                    // Update curent players
+                                    RoomsListData.RegularGames[index].CurrentPlayers = clientMsg.CurrentPlayers;
+                                    // Send updated regular game
+                                    SendRegularRoomMessageSignal.Dispatch(new RegularGameMessage
+                                    {
+                                        CurrentPlayers = RoomsListData.RegularGames[index].CurrentPlayers,
+                                        Id = RoomsListData.RegularGames[index].Id,
+                                        MaxPlayers = RoomsListData.RegularGames[index].MaxPlayers,
+                                        Name = RoomsListData.RegularGames[index].Name,
+                                        Price = RoomsListData.RegularGames[index].Price
+                                    });
+                                }
+                            }
+
+                            break;
+                        case StatusMsg.Sending:
+                            break;
+                        case StatusMsg.Deleting:
+                            break;
+                        case StatusMsg.Printing:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
 
                     break;
