@@ -65,11 +65,7 @@ namespace Client.Contexts
         {
             // Bind Signals
             injectionBinder.Bind<DisonnectedFromServerSignal>().ToSingleton();
-            injectionBinder.Bind<ServerConnectedResultSignal>().ToSingleton();
-            injectionBinder.Bind<LoadGameDataSignal>().ToSingleton();
-            injectionBinder.Bind<UpdateRegularGameDataSignal>().ToSingleton();
             injectionBinder.Bind<AddRegularGameViewSignal>().ToSingleton();
-            injectionBinder.Bind<UpdateSuperGameDataSignal>().ToSingleton();
             injectionBinder.Bind<AddSuperGameViewSignal>().ToSingleton();
             injectionBinder.Bind<UpdateRegularGameViewSignal>().ToSingleton();
             injectionBinder.Bind<ServerUpdateRegularGameSignal>().ToSingleton();

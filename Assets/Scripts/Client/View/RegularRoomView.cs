@@ -1,12 +1,6 @@
-﻿using Client.Models;
-using Client.Signals;
-using Models;
+﻿using Client.Signals;
 using Models.RegularGame;
-using strange.extensions.context.api;
-using strange.extensions.dispatcher.eventdispatcher.api;
-using strange.extensions.dispatcher.eventdispatcher.impl;
 using strange.extensions.mediation.impl;
-using strange.extensions.signal.impl;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +14,7 @@ namespace Client.View
         /// <summary>
         /// REgular game
         /// </summary>
-        public BaseRegularGame Game { private get; set; }
+        public BaseRegularGame Game { get; set; }
 
         /// <summary>
         /// Room name text 
@@ -42,14 +36,12 @@ namespace Client.View
         /// </summary>
         [SerializeField] private Text _joinButtonTxt;
 
-        [Inject] public ServerUpdateRegularGameSignal ServerUpdateRegularGameSignal { get; set; }
+        /// <summary>
+        /// Server updateRegularGameSignal
+        /// </summary>
+        public ServerUpdateRegularGameSignal ServerUpdateRegularGameSignal { get; set; }
 
-        [Inject] public IEvent buttonClicked { get; set; }
-
-        [Inject(ContextKeys.CONTEXT_DISPATCHER)]
-        IEventDispatcher dispatcher { get; set; }
-
-        private void Start()
+        public void InitGame()
         {
             // set room name
             _roomName.text = Game.Name;
@@ -67,14 +59,17 @@ namespace Client.View
             else
             {
                 // @todo Fix this
-                dispatcher.AddListener(buttonClicked, () =>
+                _joinButton.OnClickAsObservable().ObserveOnMainThread().Subscribe(p =>
                 {
-                    Debug.Log("buttonClicked");
                     ServerUpdateRegularGameSignal.Dispatch(Game);
                     SceneManager.LoadSceneAsync("JoinRoom", LoadSceneMode.Additive);
                 });
-                _joinButton.OnClickAsObservable().Subscribe(p => { dispatcher.Dispatch(buttonClicked); });
             }
+        }
+
+        private void Start()
+        {
+            InitGame();
         }
     }
 

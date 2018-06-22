@@ -10,6 +10,12 @@ namespace Client.View
     public class RoomListView : EventView
     {
         /// <summary>
+        /// Server updateRegularGameSignal
+        /// </summary>
+        [Inject]
+        public ServerUpdateRegularGameSignal ServerUpdateRegularGameSignal { get; set; }
+
+        /// <summary>
         /// Add regular game view on scene
         /// </summary>
         /// <param name="game"></param>
@@ -20,6 +26,7 @@ namespace Client.View
                 transform
             );
             regularRoom.GetComponent<RegularRoomView>().Game = game;
+            regularRoom.GetComponent<RegularRoomView>().ServerUpdateRegularGameSignal = ServerUpdateRegularGameSignal;
         }
 
         /// <summary>
@@ -41,7 +48,15 @@ namespace Client.View
         /// <param name="game"></param>
         public void UpdateRegularGameView(BaseRegularGame game)
         {
-            Debug.Log("UpdateRegularGameView" + game.Id);
+            foreach (Transform child in transform)
+            {
+                if (child.GetComponent<RegularRoomView>() == null ||
+                    child.GetComponent<RegularRoomView>().Game.Id != game.Id) continue;
+                child.GetComponent<RegularRoomView>().Game = game;
+                child.GetComponent<RegularRoomView>().InitGame();
+            }
+
+            Debug.Log("UpdateRegularGameView " + game.Id);
         }
     }
 
