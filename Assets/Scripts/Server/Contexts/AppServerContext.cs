@@ -5,6 +5,7 @@ using strange.extensions.context.api;
 using strange.extensions.context.impl;
 using Server.Commands;
 using Server.Handlers;
+using Server.Services;
 using Server.Signals;
 using Server.Views;
 using UnityEngine;
@@ -49,8 +50,7 @@ namespace Server.Contexts
         {
             base.Start();
 
-//            var startSignal = injectionBinder.GetInstance<StartListeningServerSignal>();
-            var startSignal = injectionBinder.GetInstance<LoadRoomListSignal>();
+            var startSignal = injectionBinder.GetInstance<StartListeningServerSignal>();
             startSignal.Dispatch();
 
             return this;
@@ -63,25 +63,17 @@ namespace Server.Contexts
         protected override void mapBindings()
         {
             // Bind Signals
-            injectionBinder.Bind<LoadRoomListSignal>().ToSingleton();
-            injectionBinder.Bind<ServerConnectedSignal>().ToSingleton();
-            injectionBinder.Bind<StartListeningServerSignal>().ToSingleton();
             injectionBinder.Bind<ServerErrorSignal>().ToSingleton();
-            injectionBinder.Bind<DisconnectSignal>().ToSingleton();
-            injectionBinder.Bind<SendRegularRoomMessageSignal>().ToSingleton();
-            injectionBinder.Bind<SendSuperRoomMessageSignal>().ToSingleton();
-            injectionBinder.Bind<StartServerSignal>().ToSingleton();
+            injectionBinder.Bind<DisconnectSignal>().ToSingleton();  
 
             // Bind Services
             injectionBinder.Bind<GameServerService>().ToSingleton();
-            injectionBinder.Bind<ChatMessageHandler>().ToSingleton();
-            injectionBinder.Bind<RoomsListData>().ToSingleton();
+            injectionBinder.Bind<PlayerMessageHandler>().ToSingleton();
+            injectionBinder.Bind<NetworkLobbyService>().ToSingleton();
 
             // Bind Commands
             commandBinder.Bind<StartListeningServerSignal>().To<StartListeningCommand>();
-            commandBinder.Bind<SendRegularRoomMessageSignal>().To<SendRegularRoomMessageCommand>();
-            commandBinder.Bind<SendSuperRoomMessageSignal>().To<SendSuperRoomMessageCommand>();
-            commandBinder.Bind<LoadRoomListSignal>().To<FetchRoomListCommand>();
+            commandBinder.Bind<SendRegistredUsersSignal>().To<SendRegistredUsersCommand>();
             commandBinder.Bind<StartServerSignal>().To<StartServerCommand>();
             commandBinder.Bind<ServerConnectedSignal>().To<ServerConnectedCommand>();
 

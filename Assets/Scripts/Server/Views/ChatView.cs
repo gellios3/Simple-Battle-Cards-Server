@@ -2,14 +2,14 @@
 using strange.extensions.mediation.impl;
 using Server.Handlers;
 using Server.Interfaces;
+using Server.Services;
 using View;
 
 namespace Server.Views
 {
     public class ChatView : EventView, IServerFeature
     {
-                
-        [Inject] public ChatMessageHandler ChatMessageHandler { get; set; }
+        [Inject] public PlayerMessageHandler PlayerMessageHandler { get; set; }
 
         /// <summary>
         /// Handlers
@@ -19,7 +19,7 @@ namespace Server.Views
         {
             return new List<IServerHandler>
             {
-                ChatMessageHandler
+                PlayerMessageHandler
             };
         }
     }

@@ -1,6 +1,4 @@
 ﻿using Client.Commands;
-using Client.Handlers;
-using Client.Models;
 using Client.Signals;
 using Client.View;
 using Models;
@@ -8,9 +6,7 @@ using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
-using Server.Signals;
 using UnityEngine;
-using View;
 
 namespace Client.Contexts
 {
@@ -71,16 +67,16 @@ namespace Client.Contexts
             injectionBinder.Bind<ServerUpdateRegularGameSignal>().ToSingleton();
 
             //Bind Services
-            injectionBinder.Bind<RoomsListData>().ToSingleton();
+//            injectionBinder.Bind<RoomsListData>().ToSingleton();
             injectionBinder.Bind<ServerConnectorService>().ToSingleton();
-            injectionBinder.Bind<GetServerRegularRoomHandler>().ToSingleton();
-            injectionBinder.Bind<GetServerSuperRoomHandler>().ToSingleton();
+//            injectionBinder.Bind<GetServerRegularRoomHandler>().ToSingleton();
+//            injectionBinder.Bind<GetServerSuperRoomHandler>().ToSingleton();
 
             // Bind Commads
             commandBinder.Bind<LoadGameDataSignal>().To<LoadGameDataCommand>();
             commandBinder.Bind<ServerConnectedResultSignal>().To<ServerConectedCommand>();
-            commandBinder.Bind<UpdateRegularGameDataSignal>().To<UpdateRegularGameCommand>();
-            commandBinder.Bind<UpdateSuperGameDataSignal>().To<UpdateSuperGameCommand>();
+//            commandBinder.Bind<UpdateRegularGameDataSignal>().To<UpdateRegularGameCommand>();
+//            commandBinder.Bind<UpdateSuperGameDataSignal>().To<UpdateSuperGameCommand>();
             commandBinder.Bind<ServerUpdateRegularGameSignal>().To<ServerUpdateRegularGameCommand>();
 
             //Bind Views

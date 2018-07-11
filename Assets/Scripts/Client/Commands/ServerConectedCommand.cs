@@ -1,9 +1,6 @@
-﻿using Client.Handlers;
-using Client.Models;
-using Models;
+﻿using Models;
 using strange.extensions.command.impl;
 using UnityEngine;
-using UnityEngine.Networking.NetworkSystem;
 
 namespace Client.Commands
 {
@@ -28,17 +25,17 @@ namespace Client.Commands
         {
             if (IsConnected)
             {
-                ServerConnectorService.Send(MsgStruct.EchoMsgId, new ClientMessage
-                {
-                    RoomType = RoomType.Super,
-                    Status = StatusMsg.Adding
-                });
-                
-                ServerConnectorService.Send(MsgStruct.EchoMsgId, new ClientMessage
-                {
-                    RoomType = RoomType.Regular,
-                    Status = StatusMsg.Adding
-                });
+//                ServerConnectorService.Send(MsgStruct.EchoMsgId, new ClientMessage
+//                {
+//                    RoomType = RoomType.Super,
+//                    Status = StatusMsg.Adding
+//                });
+//                
+//                ServerConnectorService.Send(MsgStruct.EchoMsgId, new ClientMessage
+//                {
+//                    RoomType = RoomType.Regular,
+//                    Status = StatusMsg.Adding
+//                });
             }
             else
             {
