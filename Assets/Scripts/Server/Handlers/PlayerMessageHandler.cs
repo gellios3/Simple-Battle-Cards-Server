@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Messages;
 using Server.Interfaces;
 using Server.Services;
 using Server.Signals;
@@ -12,25 +13,36 @@ namespace Server.Handlers
         /// <summary>
         /// Message Type
         /// </summary>
-        public short MessageType => MsgStruct.RegisterPlayer;
+        public short MessageType => MsgStruct.SendPlayer;
 
         [Inject] public NetworkLobbyService NetworkLobbyService { get; set; }
-        
+
         [Inject] public SendRegistredUsersSignal SendRegistredUsersSignal { get; set; }
 
         public void Handle(NetworkMessage message)
         {
             var registerPlayerMessage = message.ReadMessage<PlayerMessage>();
-            if (registerPlayerMessage != null)
+            if (registerPlayerMessage == null) return;
+
+            var item = new PlayerStruct
             {
-                NetworkLobbyService.Players.AddUnique(new PlayerStruct
-                {
-                    Id = registerPlayerMessage.Id,
-                    Name = registerPlayerMessage.Name,
-                    IsConnected = registerPlayerMessage.IsConnected
-                });
-                SendRegistredUsersSignal.Dispatch();
+                Id = registerPlayerMessage.Id,
+                Name = registerPlayerMessage.Name,
+                IsConected = registerPlayerMessage.IsConnected
+            };
+
+            // add or update user
+            var index = NetworkLobbyService.Players.IndexOf(item);
+            if (index == -1)
+            {
+                NetworkLobbyService.Players.Add(item);
             }
+            else
+            {
+                NetworkLobbyService.Players[index] = item;
+            }
+
+            SendRegistredUsersSignal.Dispatch();
         }
     }
 }

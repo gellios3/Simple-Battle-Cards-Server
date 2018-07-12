@@ -64,18 +64,22 @@ namespace Server.Contexts
         {
             // Bind Signals
             injectionBinder.Bind<ServerErrorSignal>().ToSingleton();
-            injectionBinder.Bind<DisconnectSignal>().ToSingleton();  
 
             // Bind Services
             injectionBinder.Bind<GameServerService>().ToSingleton();
-            injectionBinder.Bind<PlayerMessageHandler>().ToSingleton();
             injectionBinder.Bind<NetworkLobbyService>().ToSingleton();
+            
+            // Bind Handlers
+            injectionBinder.Bind<PlayerMessageHandler>().ToSingleton();
+            injectionBinder.Bind<PingPlayerHandler>().ToSingleton();
 
             // Bind Commands
             commandBinder.Bind<StartListeningServerSignal>().To<StartListeningCommand>();
             commandBinder.Bind<SendRegistredUsersSignal>().To<SendRegistredUsersCommand>();
             commandBinder.Bind<StartServerSignal>().To<StartServerCommand>();
             commandBinder.Bind<ServerConnectedSignal>().To<ServerConnectedCommand>();
+            commandBinder.Bind<DisconnectSignal>().To<DisconectFromServerCommand>();
+            commandBinder.Bind<CheckUsersConnectionSignal>().To<CheckUsersConnectionCommand>();
 
             // Bind Views   
             mediationBinder.Bind<ServerView>().To<ServerViewMediator>();

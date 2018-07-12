@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using strange.extensions.mediation.impl;
 using Server.Handlers;
 using Server.Interfaces;
 using Server.Services;
+using Server.Signals;
+using UnityEngine;
 using View;
 
 namespace Server.Views
@@ -10,6 +13,13 @@ namespace Server.Views
     public class ChatView : EventView, IServerFeature
     {
         [Inject] public PlayerMessageHandler PlayerMessageHandler { get; set; }
+        [Inject] public PingPlayerHandler PingPlayerHandler { get; set; }
+        [Inject] public CheckUsersConnectionSignal CheckUsersConnectionSignal { get; set; }
+
+        private void Awake()
+        {
+            StartCoroutine(SpawnLoop());
+        }
 
         /// <summary>
         /// Handlers
@@ -19,8 +29,18 @@ namespace Server.Views
         {
             return new List<IServerHandler>
             {
-                PlayerMessageHandler
+                PlayerMessageHandler,
+                PingPlayerHandler
             };
+        }
+        
+        private IEnumerator SpawnLoop()
+        {
+            while (enabled)
+            {
+                yield return new WaitForSeconds (5);
+                CheckUsersConnectionSignal.Dispatch();            
+            }
         }
     }
 
