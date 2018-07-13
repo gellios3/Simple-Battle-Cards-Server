@@ -41,7 +41,10 @@ namespace Server.Handlers
                 NetworkLobbyService.Players[index] = item;
             }
 
-            SendLobbyPlayerSignal.Dispatch(item);
+            foreach (var networkPlayer in NetworkLobbyService.Players)
+            {
+                SendLobbyPlayerSignal.Dispatch(networkPlayer);
+            }
         }
     }
 }
