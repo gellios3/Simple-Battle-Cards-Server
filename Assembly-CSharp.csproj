@@ -204,7 +204,7 @@
     <Compile Include="Assets\Scripts\Models\Messages\PingPlayerMessage.cs" />
     <Compile Include="Assets\Scripts\Models\Messages\PlayerMessage.cs" />
     <Compile Include="Assets\Scripts\Models\MsgStruct.cs" />
-    <Compile Include="Assets\Scripts\Models\PlayerStruct.cs" />
+    <Compile Include="Assets\Scripts\Models\NetworkPlayer.cs" />
     <Compile Include="Assets\Scripts\Models\RegularGame\BaseRegularGame.cs" />
     <Compile Include="Assets\Scripts\Models\RegularGame\IRegularGame.cs" />
     <Compile Include="Assets\Scripts\Models\RegularGame\RegularGameMessage.cs" />

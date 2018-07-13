@@ -3,8 +3,8 @@ using Models.Messages;
 using Server.Interfaces;
 using Server.Services;
 using Server.Signals;
-using UnityEngine;
 using UnityEngine.Networking;
+using NetworkPlayer = Models.NetworkPlayer;
 
 namespace Server.Handlers
 {
@@ -24,11 +24,10 @@ namespace Server.Handlers
             var registerPlayerMessage = message.ReadMessage<PlayerMessage>();
             if (registerPlayerMessage == null) return;
 
-            var item = new PlayerStruct
+            var item = new NetworkPlayer
             {
                 Id = registerPlayerMessage.Id,
                 Name = registerPlayerMessage.Name,
-                IsConected = registerPlayerMessage.IsConnected
             };
 
             // add or update user

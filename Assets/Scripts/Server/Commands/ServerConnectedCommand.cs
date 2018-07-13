@@ -8,7 +8,6 @@ namespace Server.Commands
 
         public override void Execute()
         {
-            Debug.Log("ServerConnectedCommand");
         }
     }
 }

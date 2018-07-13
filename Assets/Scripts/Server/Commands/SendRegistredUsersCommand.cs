@@ -2,7 +2,6 @@
 using Models.Messages;
 using strange.extensions.command.impl;
 using Server.Services;
-using UnityEngine;
 
 namespace Server.Commands
 {
@@ -18,11 +17,10 @@ namespace Server.Commands
 
         public override void Execute()
         {
-            Debug.Log("SendRegistredUsersCommand");
             GameServerService.Send(GameServerService.ActiveConnections, MsgStruct.GetRegisteredPlayers,
                 new LobbyPlayersMessage
                 {
-                    Players = NetworkLobbyService.Players.ToArray()
+                    NetworkPlayers = NetworkLobbyService.Players.ToArray()
                 });
         }
     }

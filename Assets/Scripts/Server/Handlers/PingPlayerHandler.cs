@@ -4,6 +4,7 @@ using Server.Interfaces;
 using Server.Services;
 using UnityEngine;
 using UnityEngine.Networking;
+using NetworkPlayer = Models.NetworkPlayer;
 
 namespace Server.Handlers
 {
@@ -14,6 +15,9 @@ namespace Server.Handlers
         /// </summary>
         public short MessageType => MsgStruct.SendPlayerID;
 
+        /// <summary>
+        /// Network lobby service
+        /// </summary>
         [Inject] public NetworkLobbyService NetworkLobbyService { get; set; }
 
         /// <summary>
@@ -28,10 +32,9 @@ namespace Server.Handlers
             {
                 if (NetworkLobbyService.Players[i].Id == pingPlayerMessage.Id)
                 {
-                    NetworkLobbyService.Players[i] = new PlayerStruct
+                    NetworkLobbyService.Players[i] = new NetworkPlayer
                     {
                         Id = pingPlayerMessage.Id,
-                        IsConected = true,
                         Name = NetworkLobbyService.Players[i].Name,
                         Ping = Time.time
                     };

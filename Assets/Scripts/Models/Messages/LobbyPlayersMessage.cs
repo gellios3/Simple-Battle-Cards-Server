@@ -4,6 +4,6 @@ namespace Models.Messages
 {
     public class LobbyPlayersMessage  : MessageBase
     {
-        public PlayerStruct[] Players;
+        public NetworkPlayer[] NetworkPlayers;
     }
 }

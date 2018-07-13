@@ -5,6 +5,6 @@ namespace Server.Services
 {
     public class NetworkLobbyService
     {
-        public List<PlayerStruct> Players { get; } = new List<PlayerStruct>();
+        public List<NetworkPlayer> Players { get; } = new List<NetworkPlayer>();
     }
 }
