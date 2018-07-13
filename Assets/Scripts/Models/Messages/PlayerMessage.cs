@@ -6,6 +6,5 @@ namespace Models.Messages
     {
         public int Id;
         public string Name;
-        public bool IsConnected;
     }
 }

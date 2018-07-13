@@ -17,7 +17,7 @@ namespace Server.Commands
         /// Send registred users signal
         /// </summary>
         [Inject]
-        public SendRegistredUsersSignal SendRegistredUsersSignal { get; set; }
+        public RemoveLobbyPlayerSignal RemoveLobbyPlayerSignal { get; set; }
 
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Server.Commands
             foreach (var item in NetworkLobbyService.Players)
             {
                 if (!(item.Ping > 0) || !(Time.time > item.Ping + 5)) continue;
-                NetworkLobbyService.Players.Remove(item);
-                SendRegistredUsersSignal.Dispatch();
+                RemoveLobbyPlayerSignal.Dispatch(item.Id);
+                NetworkLobbyService.Players.Remove(item);               
             }
         }
     }

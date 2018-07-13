@@ -17,7 +17,7 @@ namespace Server.Handlers
 
         [Inject] public NetworkLobbyService NetworkLobbyService { get; set; }
 
-        [Inject] public SendRegistredUsersSignal SendRegistredUsersSignal { get; set; }
+        [Inject] public SendLobbyPlayerSignal SendLobbyPlayerSignal { get; set; }
 
         public void Handle(NetworkMessage message)
         {
@@ -27,7 +27,7 @@ namespace Server.Handlers
             var item = new NetworkPlayer
             {
                 Id = registerPlayerMessage.Id,
-                Name = registerPlayerMessage.Name,
+                Name = registerPlayerMessage.Name
             };
 
             // add or update user
@@ -41,7 +41,7 @@ namespace Server.Handlers
                 NetworkLobbyService.Players[index] = item;
             }
 
-            SendRegistredUsersSignal.Dispatch();
+            SendLobbyPlayerSignal.Dispatch(item);
         }
     }
 }

@@ -200,7 +200,7 @@
     <Compile Include="Assets\Scripts\Client\View\SuperRoomView.cs" />
     <Compile Include="Assets\Scripts\LaunchMode.cs" />
     <Compile Include="Assets\Scripts\Models\Messages\EnemyTurnMessage.cs" />
-    <Compile Include="Assets\Scripts\Models\Messages\LobbyPlayersMessage.cs" />
+    <Compile Include="Assets\Scripts\Models\Messages\LobbyPlayerMessage.cs" />
     <Compile Include="Assets\Scripts\Models\Messages\PingPlayerMessage.cs" />
     <Compile Include="Assets\Scripts\Models\Messages\PlayerMessage.cs" />
     <Compile Include="Assets\Scripts\Models\MsgStruct.cs" />
@@ -215,7 +215,8 @@
     <Compile Include="Assets\Scripts\Models\SuperGame\SuperGameMessage.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\CheckUsersConnectionCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\DisconectFromServerCommand.cs" />
-    <Compile Include="Assets\Scripts\Server\Commands\SendRegistredUsersCommand.cs" />
+    <Compile Include="Assets\Scripts\Server\Commands\RemoveLobbyPlayerCommand.cs" />
+    <Compile Include="Assets\Scripts\Server\Commands\SendLobbyPlayerCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\ServerConnectedCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\StartListeningCommand.cs" />
     <Compile Include="Assets\Scripts\Server\Commands\StartServerCommand.cs" />
@@ -230,8 +231,9 @@
     <Compile Include="Assets\Scripts\Server\Services\NetworkLobbyService.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\CheckUsersConnectionSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\DisconnectSignal.cs" />
+    <Compile Include="Assets\Scripts\Server\Signals\RemoveLobbyPlayerSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\RestartServerSignal.cs" />
-    <Compile Include="Assets\Scripts\Server\Signals\SendRegistredUsersSignal.cs" />
+    <Compile Include="Assets\Scripts\Server\Signals\SendLobbyPlayerSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\ServerConnectedSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\ServerErrorSignal.cs" />
     <Compile Include="Assets\Scripts\Server\Signals\StartListeningServerSignal.cs" />

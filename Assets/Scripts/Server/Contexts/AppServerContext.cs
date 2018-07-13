@@ -75,7 +75,8 @@ namespace Server.Contexts
 
             // Bind Commands
             commandBinder.Bind<StartListeningServerSignal>().To<StartListeningCommand>();
-            commandBinder.Bind<SendRegistredUsersSignal>().To<SendRegistredUsersCommand>();
+            commandBinder.Bind<SendLobbyPlayerSignal>().To<SendLobbyPlayerCommand>();
+            commandBinder.Bind<RemoveLobbyPlayerSignal>().To<RemoveLobbyPlayerCommand>();
             commandBinder.Bind<StartServerSignal>().To<StartServerCommand>();
             commandBinder.Bind<ServerConnectedSignal>().To<ServerConnectedCommand>();
             commandBinder.Bind<DisconnectSignal>().To<DisconectFromServerCommand>();
